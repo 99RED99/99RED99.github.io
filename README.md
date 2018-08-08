@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/samanyougarg/hanuman.svg?branch=master)](https://travis-ci.org/samanyougarg/hanuman)
 
+# RED
 Hanuman is a minimal yet powerful Jekyll theme for your blogs and websites.
 
 It is built using the open source [AMP Start framework](https://www.ampstart.com/) and can be customized as per your requirements.
