@@ -18,21 +18,26 @@ author: red
 </video>
 
 <script type="text/javascript">
-    setTimeout(() => {
-        console.log(111);
-        videojs('video1', {
-            sources: [{
-                src: 'https://vjs.zencdn.net/v/oceans.mp4?1080',
-                type: 'video/mp4',
-                label: 'HD',
-                res: '1080'
-            }, {
-                src: 'https://vjs.zencdn.net/v/oceans.mp4?480',
-                type: 'video/mp4',
-                label: 'SD',
-                res: '480'
-            }]
-        });
+    var pTimer;
+    
+    pTimer = setInterval( function() {
+        //console.log(111);
+        if( typeof videojs == 'function' ) {
+            videojs('video1', {
+                sources: [{
+                    src: 'https://vjs.zencdn.net/v/oceans.mp4?1080',
+                    type: 'video/mp4',
+                    label: 'HD',
+                    res: '1080'
+                }, {
+                    src: 'https://vjs.zencdn.net/v/oceans.mp4?480',
+                    type: 'video/mp4',
+                    label: 'SD',
+                    res: '480'
+                }]
+            });
+            clearInterval(pTimer);
+        }
 
     }, 1000);
 </script>
