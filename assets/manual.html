@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Video | HTML5 Video Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script> -->
+    <!-- <script src="https://cdn.bootcss.com/video.js/6.6.2/ie8/videojs-ie8.min.js"></script> -->
+    <script src="js/lib/require.js" data-main="js/app.video.js"></script>
+
+</head>
+
+<body>
+    <!-- <video id="video1" class="video-js" controls width="640" height="264" poster="http://vjs.zencdn.net/v/oceans.png">
+        <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4 '>
+        <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm '>
+        <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg '>
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video> -->
+
+    <!-- <video id="video1" class="video-js vjs-default-skin" width="1000" controls data-setup='{}' muted>
+        <source src="https://vjs.zencdn.net/v/oceans.mp4?480" type='video/mp4' label='SD' res='480' />
+        <source src="https://vjs.zencdn.net/v/oceans.mp4?1080" type='video/mp4' label='HD' res='1080'/>
+        <source src="https://vjs.zencdn.net/v/oceans.mp4?144" type='video/mp4' label='phone' res='144'/>
+        <source src="https://vjs.zencdn.net/v/oceans.mp4?2160" type='video/mp4' label='4k' res='2160'/>
+      </video> -->
+
+    <video id="video1" class="video-js vjs-default-skin" controls width="640" height="264" poster="http://vjs.zencdn.net/v/oceans.png">
+        <!-- <source src="https://vjs.zencdn.net/v/oceans.mp4?480" type='video/mp4' label='SD' res='480' />
+        <source src="https://vjs.zencdn.net/v/oceans.mp4?1080" type='video/mp4' label='HD' res='1080' />
+        <source src="https://vjs.zencdn.net/v/oceans.mp4?144" type='video/mp4' label='phone' res='144' />
+        <source src="https://vjs.zencdn.net/v/oceans.mp4?2160" type='video/mp4' label='4k' res='2160' /> -->
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
+
+    <p>하고싶은게 많쿠먼..</p>
+
+    <script type="text/javascript">
+        // data-setup='{ "playbackRates": [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2] }'
+        // var player = videojs('video1 ', {
+        //     playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
+        // });
+        /* requirejs(['lib/video', 'ebsplayer'], function (vjs, ep) {
+            reuqirejs로는 파일단위로 지정안한 ebsplayer를 찾을수가 없다..
+            console.log('99');
+            videojs('video1', {
+                controls: true,
+                fluid: true
+            });
+        }); */
+        // 로드 방법을 고민해 봐야겠다.
+
+
+        setTimeout(() => {
+            console.log(111);
+            videojs('video1', {
+                sources: [{
+                    src: 'https://vjs.zencdn.net/v/oceans.mp4?1080',
+                    type: 'video/mp4',
+                    label: 'HD',
+                    res: '1080'
+                }, {
+                    src: 'https://vjs.zencdn.net/v/oceans.mp4?480',
+                    type: 'video/mp4',
+                    label: 'SD',
+                    res: '480'
+                }]
+            });
+
+        }, 1000);
+    </script>
+</body>
+
+</html>
