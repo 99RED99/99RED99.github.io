@@ -1,5 +1,5 @@
 requirejs.config({
-    baseUrl: 'js/lib',
+    baseUrl: '/assets/js/lib',
     paths: {},
     shim: {
         'videojs-abloop': {
@@ -37,12 +37,13 @@ define('ebsplayer', ['video', 'videojs.hotkeys', 'videojs-abloop', 'videojs-reso
         }
     };
 
-    loadCss(['js/lib/video-js.css', 'js/lib/videojs-resolution-switcher.css', 'js/app.video.css']);
+    loadCss(['/assets/js/lib/video-js.css', '/assets/js/lib/videojs-resolution-switcher.css', '/assets/js/app.video.css']);
 
     console.log(222);
 
     var defaultOpts = {
         controls: true,
+        preload: 'auto',
         autoplay: 'play',
         fluid: true,
         playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
