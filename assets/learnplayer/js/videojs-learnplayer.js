@@ -235,15 +235,15 @@
 				track.addEventListener('cuechange', videojs.bind(_this, _this.update));
 				return _this;
 			}
-			IndexTrackItem.prototype.createEl = function createEl(type, props, attrs) {
-				this.nonIconControl = true;
+			// IndexTrackItem.prototype.createEl = function () {
+			// 	this.nonIconControl = true;
 
-				return _MenuItem.prototype.createEl.call(this, 'li', Object.assign({
-					className: 'vjs-menu-item',
-					innerHTML: '<span class="vjs-menu-item-text">' + this.localize(this.options_.label) + '</span>',
-					tabIndex: -1
-				}, props), attrs);
-			};
+			// 	return _MenuItem.prototype.createEl.call(this, 'li', Object.assign({
+			// 		className: 'vjs-menu-item',
+			// 		innerHTML: '<span class="vjs-menu-item-text">' + this.localize(this.options_.label) + '</span>',
+			// 		tabIndex: -1
+			// 	}, props), attrs);
+			// };
 			IndexTrackItem.prototype.handleClick = function handleClick(event) {
 				_MenuItem.prototype.handleClick.call(this);
 				this.player_.currentTime(this.cue.startTime);
@@ -266,6 +266,7 @@
 			inherits(IndexLayer, _ModalDialog);
 
 			function IndexLayer(player, options, indexButton) {
+				videojs.log("IndexLayer");
 				classCallCheck(this, IndexLayer);
 				options.pauseOnOpen = false;
 				options.temporary = false;
@@ -299,6 +300,7 @@
 				return _this;
 			}
 			IndexLayer.prototype.updateTrack = function update(event) {
+				videojs.log("IndexLayer.prototype.updateTrack");
 				if (!this.track_ || event && (event.type === 'addtrack' || event.type === 'removetrack')) {
 					this.setTrack(this.findChaptersTrack());
 				}
@@ -320,6 +322,7 @@
 				this.fill();
 				this.buttonPressed_ = false;
 
+				videojs.log("IndexLayer.prototype.updateTrack::items.length=" + this.items.length );
 				if (this.items && this.items.length <= this.hideThreshold_) {
 					menu.hide();
 				} else {
@@ -328,6 +331,7 @@
 				}
 			};
 			IndexLayer.prototype.setTrack = function setTrack(track) {
+				videojs.log("IndexLayer.prototype.setTrack");
 				if (this.track_ === track) {
 					return;
 				}
@@ -351,6 +355,7 @@
 				}
 			};
 			IndexLayer.prototype.findChaptersTrack = function findChaptersTrack() {
+				videojs.log("IndexLayer.prototype.findChaptersTrack");
 				var tracks = this.player_.textTracks() || [];
 				for (var i = tracks.length - 1; i >= 0; i--) {
 					var track = tracks[i];
@@ -1372,9 +1377,20 @@
 		};
 
 		/**
+		 * player data change
+		 */
+		var changeSouece = function( options ) {
+
+			if (options.sources.length > 1) {
+				this.updateSrc(options.sources);
+			}
+		}
+
+		/**
 		 * LearnPlugin
 		 */
 		var LearnPlugin = function (player, options) {
+			player.changeSouece = changeSouece;
 			player.addClass('video-js');
 			player.on('mouseleave', function () {
 				player.userActive(false);
