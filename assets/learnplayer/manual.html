@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Video | HTML5 Video Player</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="./js/require.js" data-main="./js/app"></script>
+    <script>
+        var playerObj;
+        require(['learnplayer-config'], function () {
+            playerObj = videojs('video1', {
+                sources: [{
+                    src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
+                    type: 'video/mp4',
+                    label: '고화질',
+                    res: '1080'
+                }, {
+                    src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+                    type: 'video/mp4',
+                    label: '일반화질',
+                    res: '480'
+                }],
+                tracks: [{
+                        src: 'track/captions.en.vtt',
+                        kind: 'subtitles',
+                        srclang: 'en',
+                        label: '영어',
+                        default: true
+                    },
+                    {
+                        src: 'track/subtitle.en.srt',
+                        kind: 'subtitles',
+                        srclang: 'ko',
+                        label: '한국어'
+                        // default: false
+                    }
+                    // ,
+                    // {
+                    //     src: 'track/captions.ar.vtt',
+                    //     kind: 'subtitles',
+                    //     srclang: 'ar',
+                    //     label: 'English',
+                    //     default: true
+                    // }
+                    ,
+                    {
+                        src: [{
+                                startTime: 0,
+                                endTime: 10,
+                                text: '수동 인덱스 1'
+                            },
+                            {
+                                startTime: 11,
+                                endTime: 15,
+                                text: '수동 인덱스 2'
+                            },
+                            {
+                                startTime: 16,
+                                endTime: 22,
+                                text: '수동 인덱스 3'
+                            }
+                        ],
+                        kind: 'chapters',
+                        srclang: 'en',
+                        label: 'English'
+                        // default: true
+                    }
+                    // ,
+                    // {
+                    //     src: 'track/chapters.en.vtt',
+                    //     kind: 'chapters',
+                    //     srclang: 'en',
+                    //     label: 'English'
+                    // }
+                ],
+                poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg',
+                // autoplay: false,
+                // width: '800px',
+                // fluid: true,
+                // aspectRatio: '16:3',
+                // language: 'ko-kr',
+                topbar: {
+                    topbarText: {
+                        title: '강의제목이 노출 되는 위치 입니다. 길이가 길어지면 말줄임 표시가 되는 형식입니다.'
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="max-width: 1024px;">
+        <video id="video1" class="video-js vjs-default-skin">
+            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser
+                that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Video | HTML5 Video Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/require.js" data-main="./js/app"></script>
+    <script>
+        require(['learnplayer'], function () {
+            videojs('video1', {
+                sources: [{
+                    src: 'https://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4?1080',
+                    type: 'video/mp4',
+                    label: 'HD',
+                    res: '1080'
+                }, {
+                    src: 'https://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4?480',
+                    type: 'video/mp4',
+                    label: 'SD',
+                    res: '480'
+                }],
+                poster: 'http://vjs.zencdn.net/v/oceans.png',
+                autoplay: false,
+                topbar: {
+                    title: '강의제목이 노출 되는 위치 입니다.'
+                }
+            });
+            videojs('video2', {
+                sources: [{
+                    src: 'https://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4?1080',
+                    type: 'video/mp4',
+                    label: 'HD',
+                    res: '1080'
+                }, {
+                    src: 'https://d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4?480',
+                    type: 'video/mp4',
+                    label: 'SD',
+                    res: '480'
+                }],
+                poster: 'http://vjs.zencdn.net/v/oceans.png',
+                autoplay: false,
+                topbar: {
+                    title: '강의제목이 노출 되는 위치 입니다.'
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>첫번째</p>
+    <video id="video1" class="video-js vjs-default-skin">
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
+    <p>두번째</p>
+    <video id="video2" class="video-js vjs-default-skin">
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
+</body>
+
+</html>
