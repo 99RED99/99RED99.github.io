@@ -711,6 +711,7 @@
 .video-js .vjs-icon-cog.vjs-menu-button-popup .vjs-menu-content {
     border: solid 1px rgba(0, 0, 0, 1);
     border-radius: 4px;
+    overflow: hidden;
 }
 
 .video-js .vjs-icon-cog.vjs-menu-button-popup .vjs-menu-title {
