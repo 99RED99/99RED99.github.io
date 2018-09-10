@@ -1021,7 +1021,7 @@
 					var track = tracks[i];
 					if (kinds_.indexOf(track.kind) > -1) {
 						var item = new CaptionsMenuItem(this.player_, {
-							track,
+							track: track,
 							parentObj: this
 						});
 						item.addClass('vjs-' + track.kind + '-menu-item');
