@@ -619,6 +619,24 @@
     display: none;
 }
 
+/** controlBar - CaptionsToggle */
+.video-js .vjs-captions-button {
+    color: rgba(121, 116, 116, 0.761);
+}
+
+.video-js .vjs-captions-button.vjs-selected {
+    color: rgba(255, 255, 255, 1);
+}
+
+.video-js .vjs-button.vjs-captions-button > .vjs-icon-placeholder:before {
+    font-size: 12px;
+}
+
+.video-js .vjs-button.vjs-captions-button > .vjs-icon-placeholder:before {
+    font-size: 2.2em;
+    line-height: 1.37em;
+}
+
 /** controlBar - playback-rate */
 .video-js.vjs-workinghover .vjs-playback-rate.vjs-control {
     width: 4em;
@@ -646,22 +664,11 @@
     line-height: 2.4em;
 }
 
-/** controlBar - CaptionsToggle */
-.video-js .vjs-captions-button {
-    color: rgba(121, 116, 116, 0.761);
-}
-
-.video-js .vjs-captions-button.vjs-selected {
-    color: rgba(255, 255, 255, 1);
-}
-
-.vjs-icon-captions:before, .video-js .vjs-captions-button .vjs-icon-placeholder:before, .video-js:lang(en) .vjs-subs-caps-button .vjs-icon-placeholder:before, .video-js:lang(fr-CA) .vjs-subs-caps-button .vjs-icon-placeholder:before {
-    content: "\f10d";
-    font-size: 2.2em;
-    line-height: 1.37em;
-}
-
 /** controlBar - fullscreen-control */
+.vjs-icon-fullscreen-enter:before, .video-js .vjs-fullscreen-control .vjs-icon-placeholder:before {
+    font-size: 12px;
+}
+
 .vjs-icon-fullscreen-enter:before, .video-js .vjs-fullscreen-control .vjs-icon-placeholder:before {
     content: "\f108";
     font-size: 2.4em;
