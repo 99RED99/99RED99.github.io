@@ -2,12 +2,12 @@
 layout: post
 cover: 'assets/images/tree.jpg'
 title: video test manual
-date: 2018-08-09 04:00:00
+date: 2018-08-10 04:00:00
 tags: video
 author: red
 ---
 
-# 프로그램 타입으로 호출한 플레이어
+# 프로그램 타입으로 호출한 플레이어1
 #### 태그 자동 셋팅이 아닝 스크립트로 호출
 
 <script src="/assets/js/lib/require.js" data-main="/assets/js/app.video.js"></script>
