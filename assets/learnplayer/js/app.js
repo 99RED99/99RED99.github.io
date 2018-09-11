@@ -70,9 +70,9 @@ window.defaultOpts = {
     },
     continue: {
         time: 0,
-        isShowMessage : true,
-        messageType : 'confirm', // [alert | confirm]
-        message : '마지막 학습위치에서 재생하시겠습니까?<br/>&lt;br/&gt;태그로 여러줄을 입력하세요',
+        isShowMessage: true,
+        messageType: 'confirm', // [alert | confirm]
+        message: '마지막 학습위치에서 재생하시겠습니까?<br/>&lt;br/&gt;태그로 여러줄을 입력하세요',
         title: '' // default '알림'
     },
     resolution: {
@@ -89,13 +89,13 @@ window.defaultOpts = {
             href: 'manual.html?ddd=dd&dkdjf=22#first', // ex) manual.html?ddd=dd&dkdjf=22#first
             target: '_blank',
             isPlayStop: true, // 재생 정지 여부
-            messageType : 'confirm', // [alert | confirm]
-            message : 'QNA 페이지로 이동 하시겠습니까?',
+            messageType: 'confirm', // [alert | confirm]
+            message: 'QNA 페이지로 이동 하시겠습니까?',
             title: '' // default '알림'
         }
     },
     playerInfo: {
-        innerHtml : 'EOSF player 1.0' // text or tag Element
+        innerHtml: 'EOSF player 1.0' // text or tag Element
     },
     debug: true
 };
