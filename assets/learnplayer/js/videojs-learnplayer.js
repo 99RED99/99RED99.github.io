@@ -322,7 +322,7 @@
 				this.fill();
 				this.buttonPressed_ = false;
 
-				videojs.log("IndexLayer.prototype.updateTrack::items.length=" + this.items.length );
+				videojs.log("IndexLayer.prototype.updateTrack::items.length=" + this.items.length);
 				if (this.items && this.items.length <= this.hideThreshold_) {
 					menu.hide();
 				} else {
@@ -582,40 +582,43 @@
 			BigPlay1Button.prototype.handleClick = function handleClick(event) {
 				if (!this.player_.paused()) {
 					this.player_.pause();
+					this.controlText('Play');
 				} else {
+					this.controlText('Pause');
 					_BigPlayButton.prototype.handleClick.call(this, event);
 				}
 			};
+			BigPlay1Button.prototype.controlText_ = 'Pause';
 
 			return BigPlay1Button;
 		}(BigPlayButton);
 		Component.registerComponent('BigPlay1Button', BigPlay1Button);
 
 		/**
-		 * ResolutionButton
+		 * ResolutionOSDButton
 		 */
-		var ResolutionButton = function (_Component) {
-			inherits(ResolutionButton, _Component);
+		var ResolutionOSDButton = function (_Component) {
+			inherits(ResolutionOSDButton, _Component);
 
-			function ResolutionButton(player, options) {
-				classCallCheck(this, ResolutionButton);
+			function ResolutionOSDButton(player, options) {
+				classCallCheck(this, ResolutionOSDButton);
 				var _this = possibleConstructorReturn(this, _Component.call(this, player, options));
 				player.on('updateSources', videojs.bind(this, this.createResolutionMenu));
 				return _this;
 			}
-			ResolutionButton.prototype.createEl = function () {
+			ResolutionOSDButton.prototype.createEl = function () {
 				return _Component.prototype.createEl.call(this, 'div', {
 					className: 'vjs-resolution-button'
 				});
 			};
-			ResolutionButton.prototype.createResolutionMenu = function () {
+			ResolutionOSDButton.prototype.createResolutionMenu = function () {
 				var menu = new Menu(this.player());
 				videojs.dom.addClass(menu.contentEl().parentNode, 'quality-menu');
 				this.sources = this.player_.getGroupedSrc();
 				var labels = (this.sources && this.sources.label) || {};
 				for (var key in labels) {
 					if (labels.hasOwnProperty(key)) {
-						menu.addChild(new ResolutionMenuItem(
+						menu.addChild(new ResolutionOSDMenuItem(
 							this.player_, {
 								label: key,
 								src: labels[key],
@@ -626,9 +629,9 @@
 				this.addChild(menu);
 			};
 
-			return ResolutionButton;
+			return ResolutionOSDButton;
 		}(Component);
-		Component.registerComponent('ResolutionButton', ResolutionButton);
+		Component.registerComponent('ResolutionOSDButton', ResolutionOSDButton);
 
 		/**
 		 * CaptionsToggleButton
@@ -758,10 +761,10 @@
 			}
 			ResolutionMenuItem.prototype.handleClick = function (event) {
 				MenuItem.prototype.handleClick.call(this, event);
-				if (this.options_.parentObj !== undefined) {
-					this.options_.parentObj.selectedMenuName = 'basic-menu';
-					this.options_.parentObj.pressButton();
-				}
+				// if (this.options_.parentObj !== undefined) {
+				// 	this.options_.parentObj.selectedMenuName = 'basic-menu';
+				// 	this.options_.parentObj.pressButton();
+				// }
 				this.player_.currentResolution(this.options_.label);
 			};
 			ResolutionMenuItem.prototype.update = function () {
@@ -771,8 +774,28 @@
 
 			return ResolutionMenuItem;
 		}(MenuItem);
-
 		Component.registerComponent('ResolutionMenuItem', ResolutionMenuItem);
+
+		/*
+		 * ResolutionOSD menu item
+		 */
+		var ResolutionOSDMenuItem = function (_ResolutionMenuItem) {
+			inherits(ResolutionOSDMenuItem, _ResolutionMenuItem);
+
+			function ResolutionOSDMenuItem(player, options) {
+				classCallCheck(this, ResolutionOSDMenuItem);
+				var _this = possibleConstructorReturn(this, _ResolutionMenuItem.call(this, player, options));
+				return _this;
+			}
+			ResolutionOSDMenuItem.prototype.handleClick = function (event) {
+				_ResolutionMenuItem.prototype.handleClick.call(this, event);
+				this.player().getChild('ResolutionOSDButton').hide()
+				this.player().play();
+			};
+
+			return ResolutionOSDMenuItem;
+		}(ResolutionMenuItem);
+		Component.registerComponent('ResolutionOSDMenuItem', ResolutionOSDMenuItem);
 
 		/*
 		 * Resolution menu button
@@ -846,11 +869,6 @@
 				var _this = possibleConstructorReturn(this, _TextTrackMenuItem.call(this, player, options));
 				return _this;
 			}
-			CaptionsMenuItem.prototype.handleClick = function (event) {
-				_TextTrackMenuItem.prototype.handleClick.call(this, event);
-				this.options_.parentObj.selectedMenuName = 'basic-menu';
-				this.options_.parentObj.pressButton();
-			};
 
 			return CaptionsMenuItem;
 		}(TextTrackMenuItem);
@@ -864,6 +882,7 @@
 
 			function HotkeysMenuItem(player, options) {
 				classCallCheck(this, HotkeysMenuItem);
+				options.selectable = false;
 				var _this = possibleConstructorReturn(this, _MenuItem.call(this, player, options));
 				return _this;
 			}
@@ -879,11 +898,7 @@
 				_MenuItem.prototype.createControlTextEl.call(this, el);
 				return el;
 			};
-			HotkeysMenuItem.prototype.handleClick = function (event) {
-				_MenuItem.prototype.handleClick.call(this, event);
-				this.options_.parentObj.selectedMenuName = 'basic-menu';
-				this.options_.parentObj.pressButton();
-			};
+			HotkeysMenuItem.prototype.handleClick = function (event) {};
 
 			return HotkeysMenuItem;
 		}(MenuItem);
@@ -897,14 +912,11 @@
 
 			function InfoMenuItem(player, options) {
 				classCallCheck(this, InfoMenuItem);
+				options.selectable = false;
 				var _this = possibleConstructorReturn(this, _MenuItem.call(this, player, options));
 				return _this;
 			}
-			InfoMenuItem.prototype.handleClick = function (event) {
-				_MenuItem.prototype.handleClick.call(this, event);
-				this.options_.parentObj.selectedMenuName = 'basic-menu';
-				this.options_.parentObj.pressButton();
-			};
+			InfoMenuItem.prototype.handleClick = function (event) {};
 
 			return InfoMenuItem;
 		}(MenuItem);
@@ -942,10 +954,17 @@
 				this.menuList = {};
 				this.selectedMenuName = 'basic-menu';
 				var _this = possibleConstructorReturn(this, MenuButton.call(this, player, options));
-				//_this.addClass('basic-menu');
 				player.on('updateSources', videojs.bind(this, this.createResolutionMenu));
+
 				var tracks = player.textTracks();
-				tracks.one('change', videojs.bind(_this, _this.createCaptionsMenu));
+				tracks.addEventListener('removetrack', videojs.bind(_this, _this.createCaptionsMenu));
+				tracks.addEventListener('addtrack', videojs.bind(_this, _this.createCaptionsMenu));
+				player.on('ready', videojs.bind(_this, _this.createCaptionsMenu));
+				player.on('dispose', function () {
+					tracks.removeEventListener('removetrack', videojs.bind(_this, _this.createCaptionsMenu));
+					tracks.removeEventListener('addtrack', videojs.bind(_this, _this.createCaptionsMenu));
+				});
+
 				this.createHotkeysMenu();
 				this.createInfoMenu();
 				return _this;
@@ -1006,6 +1025,10 @@
 			};
 			SettingMenuButton.prototype.createCaptionsMenu = function () {
 				var menu = new Menu(this.player());
+				if (this.captionsMenu) {
+					this.captionsMenu.dispose();
+					this.removeChild(this.captionsMenu);
+				}
 				videojs.dom.addClass(menu.contentEl().parentNode, 'captions-menu');
 
 				var title = videojs.dom.createEl('li', {
@@ -1024,7 +1047,7 @@
 				var kinds_ = ['captions', 'subtitles'];
 				for (var i = 0; i < tracks.length; i++) {
 					var track = tracks[i];
-					if (kinds_.indexOf(track.kind) > -1) {
+					if (kinds_.indexOf(track.kind) > -1 && !(track.cues && track.cues.length == 0)) {
 						var item = new CaptionsMenuItem(this.player_, {
 							track: track,
 							parentObj: this
@@ -1034,6 +1057,7 @@
 					}
 				}
 
+				this.captionsMenu = menu;
 				this.addChild(menu);
 				this.menuList['Captions_Language-menu'] = menu;
 			};
@@ -1048,7 +1072,11 @@
 					},
 					{
 						name: 'Esc',
-						description: '일반화면'
+						description: '전체화면 해제'
+					},
+					{
+						name: 'M',
+						description: '음소거 / 음소거 해제'
 					},
 					// {
 					// 	name: 'B',
@@ -1064,11 +1092,11 @@
 					},
 					{
 						name: '&#8592;', // ←
-						description: '배속 증가'
+						description: '구간 이동(-5초)'
 					},
 					{
 						name: '&#8594;', // →
-						description: '배속 감소'
+						description: '구간 이동(+5초)'
 					}
 				];
 				var menu = new Menu(this.player());
@@ -1379,7 +1407,7 @@
 		/**
 		 * player data change
 		 */
-		var changeSouece = function( options ) {
+		var changeSouece = function (options) {
 
 			if (options.sources.length > 1) {
 				this.updateSrc(options.sources);
@@ -1387,9 +1415,57 @@
 		}
 
 		/**
+		 * makes details for a custom hotkey
+		 */
+		var hotKeySpec = function (spec) {
+			spec.modifiers = spec.modifiers || {};
+			return {
+				key: function (e) {
+					return (
+						(e.which === spec.key) &&
+						(!!spec.modifiers.ctrl === !!e.ctrlKey) &&
+						(!!spec.modifiers.shift === !!e.shiftKey) &&
+						(!!spec.modifiers.alt === !!e.altKey) &&
+						(!!spec.modifiers.meta === !!e.metaKey)
+					);
+				},
+				handler: spec.handler
+			};
+		};
+		/**
+		 * chage playback rate
+		 */
+		var changePlaybackRate = function (stepIndex) {
+			return function (player) {
+				videojs.log(stepIndex);
+				videojs.log(player.options_)
+				if (player.options_.playbackRates && Array.isArray(player.options_.playbackRates)) {
+					var currentRateIndex = player.options_.playbackRates.findIndex(function (rate) {
+						return rate == player.playbackRate();
+					});
+					videojs.log(currentRateIndex);
+					player.playbackRate(player.options_.playbackRates[currentRateIndex + stepIndex]);
+				}
+			};
+		};
+
+		/**
 		 * LearnPlugin
 		 */
-		var LearnPlugin = function (player, options) {
+		var LearnPlugin = function (player) {
+			player.options_.hotkey.customKeys = {
+				slowDownArBr: hotKeySpec({
+						key: 188,
+						handler: changePlaybackRate(-1)
+					}) // 188 = <
+					,
+				speedUp: hotKeySpec({
+					key: 190,
+					handler: changePlaybackRate(1)
+				}) // 190 = >
+			}
+
+			player.hotkeys(player.options_.hotkey); // 단축키 setting
 			player.changeSouece = changeSouece;
 			player.addClass('video-js');
 			player.on('mouseleave', function () {

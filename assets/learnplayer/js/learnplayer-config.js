@@ -54,12 +54,11 @@ define(['video.js', 'lang/ko', 'lang/en', 'videojs.hotkeys', 'videojs-abloop', '
     });
 
     videojs.hook('setup', function (player) {
-        player.hotkeys(player.options_.hotkey); // 단축키 setting
+        player.learnPlugin(player); // 학습 setting
         player.abLoopPlugin(); // 구간반복 setting
-        if (videojs.getPlugin('videoJsResolutionSwitcher') && player.options_.sources && player.options_.sources.length > 1 && player.options_.sources[0].res) {
+        if (videojs.getPlugin('videoJsResolutionSwitcher')) {
             player.videoJsResolutionSwitcher(player.options_.resolution); // 품질변경 setting
         }
-        player.learnPlugin(player); // 학습 setting
     });
     autoSetup();
 });

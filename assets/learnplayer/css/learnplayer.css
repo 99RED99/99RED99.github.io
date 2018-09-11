@@ -107,7 +107,7 @@
 }
 
 .video-js.learnMode .vjs-text-track-display > div > div > div {
-    font-size: 20px !important;
+    font-size: 14px !important;
 }
 
 /** topbar */
@@ -252,7 +252,6 @@
 
 .video-js .vjs-modal-dialog.vjs-index-layer .vjs-menu-title {
     width: 100%;
-    font-size: 1.4em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -298,8 +297,7 @@
 
 .video-js .vjs-modal-dialog.vjs-index-layer .vjs-control.vjs-close-button {
     top: 0;
-    width: 1em;
-    right: 20px;
+    right: 8px;
 }
 
 /** message-display */
@@ -813,6 +811,14 @@
 .video-js .vjs-icon-cog.vjs-menu-button-popup .vjs-menu.quality-menu li.vjs-menu-item.vjs-selected::before,
 .video-js .vjs-icon-cog.vjs-menu-button-popup .vjs-menu.captions-menu li.vjs-menu-item.vjs-selected::before {
     background-color: rgba(128, 0, 128, 1);
+}
+
+.video-js .vjs-icon-cog.vjs-menu-button-popup .hotkeys-menu.vjs-menu li.vjs-menu-item:focus,
+.video-js .vjs-icon-cog.vjs-menu-button-popup .hotkeys-menu.vjs-menu li.vjs-menu-item:hover,
+.video-js .vjs-icon-cog.vjs-menu-button-popup .info-menu.vjs-menu li.vjs-menu-item:focus,
+.video-js .vjs-icon-cog.vjs-menu-button-popup .info-menu.vjs-menu li.vjs-menu-item:hover {
+    background-color: transparent;
+    cursor: auto;
 }
 
 /* custom icon temp */
