@@ -18,7 +18,7 @@ window.localStorage.setItem('lectid_01', JSON.stringify({
             default: true
         },
         {
-            src: 'track/subtitle.en.srt',
+            src: 'http://farm.resources.ebs.co.kr/lcms/caption/2017/5/30/LS0000000010645007/3558289295940114_subscript.smi',
             kind: 'subtitles',
             srclang: 'ko',
             label: '한국어'
@@ -49,18 +49,18 @@ window.localStorage.setItem('lectid_01', JSON.stringify({
     poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg',
     topbar: {
         topbarText: {
-            title: '강의제목이 노출 되는 위치 입니다. 길이가 길어지면 말줄임 표시가 되는 형식입니다.'
+            title: '1강 9까지의 수(1)'
         }
     }
 }));
 window.localStorage.setItem('lectid_02', JSON.stringify({
     sources: [{
-        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
+        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170227_153931_m.mp4',
         type: 'video/mp4',
         label: '고화질',
         res: '1080'
     }, {
-        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170227_153931_l.mp4',
         type: 'video/mp4',
         label: '일반화질',
         res: '480'
@@ -73,7 +73,7 @@ window.localStorage.setItem('lectid_02', JSON.stringify({
             default: true
         },
         {
-            src: 'track/subtitle.en.srt',
+            src: 'http://farm.resources.ebs.co.kr/lcms/caption/2017/5/30/LS0000000010646826/3558297174100556_subscript.smi',
             kind: 'subtitles',
             srclang: 'ko',
             label: '한국어'
@@ -104,7 +104,7 @@ window.localStorage.setItem('lectid_02', JSON.stringify({
     poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg',
     topbar: {
         topbarText: {
-            title: '강의제목이 노출 되는 위치 입니다. 길이가 길어지면 말줄임 표시가 되는 형식입니다.'
+            title: '2강 9까지의 수(2)'
         }
     }
 }));

@@ -1,3 +1,32 @@
+define('video.js', ['video.min'], function (vjs) {
+    vjs.options.autoSetup = false;
+    window.HELP_IMPROVE_VIDEOJS = false;
+    window.videojs = vjs;
+});
+
+requirejs.config({
+    path: {
+        'lang/ko': 'lang'
+    },
+    shim: {
+        'lang/ko': {
+            deps: ['video.js']
+        },
+        'lang/en': {
+            deps: ['video.js']
+        },
+        'videojs.hotkeys.min': {
+            deps: ['video.js']
+        },
+        'videojs-abloop.min': {
+            deps: ['video.js']
+        },
+        'videojs-learnplayer.min': {
+            deps: ['video.js']
+        }
+    }
+});
+
 // Default options for the learnplayer.
 window.defaultOpts = {
     controls: true,
@@ -107,37 +136,3 @@ window.defaultOpts = {
 function goQNApopup() {
     alert('QNA 팝업을 직접 처리합니다.');
 }
-
-requirejs.config({
-    path: {
-        'lang/ko': 'lang'
-    },
-    shim: {
-        'lang/ko': {
-            deps: ['video.js']
-        },
-        'lang/en': {
-            deps: ['video.js']
-        },
-        'videojs.hotkeys': {
-            deps: ['video.js']
-        },
-        'videojs-abloop': {
-            deps: ['video.js']
-        },
-        'videojs-resolution-switcher': {
-            deps: ['video.js']
-        },
-        'videojs-learnplayer': {
-            deps: ['video.js']
-        }
-    }
-});
-
-define('video.js', ['video'], function (vjs) {
-    vjs.options.autoSetup = false;
-    window.HELP_IMPROVE_VIDEOJS = false;
-    window.videojs = vjs;
-});
-
-require(['learnplayer-config'], function () {});
