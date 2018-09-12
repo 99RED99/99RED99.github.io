@@ -368,7 +368,7 @@ window.defaultOpts = {
 <hr  />
 
 ## Credits
-- 학습플레이어는 많은 위대한 프로그래머들의 기술 결과에 의지하고 있습니다.
+- 학습플레이어는 많은 위대한 프로그래머들의 기술요소에 영감을 받았습니다.
     - videojs : Apache License 2.0
     - videjs.hotkeys : Apache License 2.0
     - videojs-abloop : MIT License
