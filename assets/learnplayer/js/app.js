@@ -83,6 +83,12 @@ window.defaultOpts = {
             'SettingMenuButton'
         ]
     },
+    contextmenu: {
+        cancel: true,
+        sensitivity: 10,
+        wait: 500,
+        disabled: false
+    },
     // skin : ['learnplayer-blue.css'],
     hotkey: {
         volumeStep: 0.1,

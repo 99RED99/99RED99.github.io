@@ -18,9 +18,10 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 
 > **note :** videojs <a href="https://videojs.com/">link</a>
 
-## 최신버전 다운로드
+## 버전별 다운로드
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.0.zip" target="_blank">v1.0.0 (18.09.11 21:14:00)</a>
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.1.zip" target="_blank">v1.0.1 (18.09.17)</a>
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.0.zip" target="_blank">v1.0.0 (18.09.11)</a>
 
 <hr  />
 
