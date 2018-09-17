@@ -13,19 +13,19 @@ requirejs.config({
             deps: ['video.min', 'video.js']
         },
         'lang/ko': {
-            deps: ['video.js']
+            deps: ['video.min', 'video.js']
         },
         'lang/en': {
-            deps: ['video.js']
+            deps: ['video.min', 'video.js']
         },
         'videojs.hotkeys.min': {
-            deps: ['video.js']
+            deps: ['video.min', 'video.js']
         },
         'videojs-abloop.min': {
-            deps: ['video.js']
+            deps: ['video.min', 'video.js']
         },
         'videojs-learnplayer.min': {
-            deps: ['video.js']
+            deps: ['video.min', 'video.js']
         }
     }
 });
