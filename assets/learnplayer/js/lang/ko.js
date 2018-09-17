@@ -2,7 +2,7 @@ videojs.addLanguage("ko", {
     "Audio Player": "오디오 플레이어",
     "Video Player": "비디오 플레이어",
     "Play": "재생",
-    "Pause": "일시중지",
+    "Pause": "일시정지",
     "Replay": "Replay",
     "Current Time": "현재 시간",
     "Duration": "지정 기간",

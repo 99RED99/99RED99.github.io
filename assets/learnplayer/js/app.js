@@ -9,6 +9,9 @@ requirejs.config({
         'lang/ko': 'lang'
     },
     shim: {
+        'learnplayer-config.min': {
+            deps: ['video.min', 'video.js']
+        },
         'lang/ko': {
             deps: ['video.js']
         },
