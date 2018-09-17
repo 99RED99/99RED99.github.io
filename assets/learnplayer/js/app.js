@@ -28,7 +28,7 @@ require.config({
         }
     }
 });
-require(['learnplayer-config'], function () {});
+require(['learnplayer-config.min'], function () {});
 
 window.HELP_IMPROVE_VIDEOJS = false;
 // Default options for the learnplayer.
