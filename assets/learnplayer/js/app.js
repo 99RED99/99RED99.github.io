@@ -1,36 +1,36 @@
-define('video.js', ['video.min'], function (vjs) {
-    vjs.options.autoSetup = false;
-    window.HELP_IMPROVE_VIDEOJS = false;
-    window.videojs = vjs;
-});
-
-requirejs.config({
+// requirejs(['video.js'], function (vjs) {
+//     vjs.options.autoSetup = false;
+//     window.HELP_IMPROVE_VIDEOJS = false;
+//     window.videojs = vjs;
+// });
+require.config({
     path: {
         'lang/ko': 'lang'
     },
     shim: {
         'learnplayer-config.min': {
-            deps: ['video.min', 'video.js']
+            deps: ['video.min']
         },
         'lang/ko': {
-            deps: ['video.min', 'video.js']
+            deps: ['video.min']
         },
         'lang/en': {
-            deps: ['video.min', 'video.js']
+            deps: ['video.min']
         },
         'videojs.hotkeys.min': {
-            deps: ['video.min', 'video.js']
+            deps: ['video.min']
         },
         'videojs-abloop.min': {
-            deps: ['video.min', 'video.js']
+            deps: ['video.min']
         },
         'videojs-learnplayer.min': {
-            deps: ['video.min', 'video.js']
+            deps: ['video.min']
         }
     }
 });
-//requirejs(['video.js'], function (vjs) {});
+require(['learnplayer-config'], function () {});
 
+window.HELP_IMPROVE_VIDEOJS = false;
 // Default options for the learnplayer.
 window.defaultOpts = {
     controls: true,
