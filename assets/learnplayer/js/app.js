@@ -29,7 +29,7 @@ requirejs.config({
         }
     }
 });
-require(['video.js'], function (vjs) {});
+//requirejs(['video.js'], function (vjs) {});
 
 // Default options for the learnplayer.
 window.defaultOpts = {
