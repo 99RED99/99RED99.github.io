@@ -72,7 +72,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 </body>
 ```
 
-- require 를 통한 학습플레이어 준비상태에서 영상정보 전달과 함께 플레이어 초기화
+- 모듈의 로드 완료시 커스텀 이벤트 "learnplayerReady" 를 통한 학습플레이어 준비상태에서 영상정보 전달과 함께 플레이어 초기화
 
 ```javascript
 <script>
@@ -156,7 +156,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 </script>
 ```
 
-- videojs()를 이용한 플레이어 초기화전 모듈의 로드 완료시 커스텀 이벤트 learnplayerReady
+- videojs()를 이용한 플레이어 초기화 호출 전 모듈의 로드 완료시 커스텀 이벤트 learnplayerReady
     - 해당이벤트는 플레이어 모듈의 로드가 완료된 시점에 발생하며 videojs 글로벌 함수의 호출 가능여부를 보장합니다.
   
 - 플레이어의 초기화 이후 준비완료 상태시의 프로그래밍<br/>
