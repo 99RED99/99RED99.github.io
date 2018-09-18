@@ -56,12 +56,11 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 ## 시작하기
 
 - 필수 JS 선언
-    - requre.js 파일과 app.js파일의 경로는 프로젝트의 context path경로로 지정하세요.
+  - requre.js 파일과 app.js 파일의 경로는 프로젝트의 context path 경로로 지정하세요.
 
 ```javascript
 <script src="./js/require.js" data-main="./js/app" />
 ```
-
 
 - 영상영역에 &lt;VIDEO&gt; 태그 선언
 
@@ -79,7 +78,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 <script>
     var playerObj;
     // 학습 플레이어 모듈에 종속하여 플레이어 초기화
-    require(['learnplayer-config.min'], function () {
+    document.addEventListener('learnplayerReady', function () {
         // arguments : element selector, options(object || null)
         playerObj = videojs('playerEl', {
             // 영상 품질 정보
@@ -157,29 +156,35 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 </script>
 ```
 
-- 플레이어의 준비완료 상태시의 프로그래밍<br/>
-    플레이어는 비동기로 로드되므로 (언제 준비될지 확정불가) 준비완료 상태의 콜벡을 다음의 3가지 형태로 제공합니다.
-    1. Anonymous function
+- videojs()를 이용한 플레이어 초기화전 모듈의 로드 완료시 커스텀 이벤트 learnplayerReady
+    - 해당이벤트는 플레이어 모듈의 로드가 완료된 시점에 발생하며 videojs 글로벌 함수의 호출 가능여부를 보장합니다.
+  
+- 플레이어의 초기화 이후 준비완료 상태시의 프로그래밍<br/>
+  플레이어는 비동기로 로드되므로 (언제 준비될지 확정불가) 준비완료 상태의 콜벡을 다음의 3 가지 형태로 제공합니다.
+  1. Anonymous function
+
 ```javascript
 // element selector, options(object || null), ready callback Anonymous function
-videojs('playerEl', {}, function() {
-    this.addClass('my-example');
+videojs("playerEl", {}, function() {
+  this.addClass("my-example");
 });
 ```
 
     2. player's ready method
+
 ```javascript
-var playerObj = videojs('playerEl');
+var playerObj = videojs("playerEl");
 playerObj.ready(function() {
-    this.addClass('my-example');
+  this.addClass("my-example");
 });
 ```
 
     3. player's ready event
+
 ```javascript
-var playerObj = videojs('playerEl');
-playerObj.on('ready', function() {
-    this.addClass('my-example');
+var playerObj = videojs("playerEl");
+playerObj.on("ready", function() {
+  this.addClass("my-example");
 });
 ```
 
@@ -188,17 +193,18 @@ playerObj.on('ready', function() {
 <hr  />
 
 ## 옵션
-- 플레이어의 초기화 설정 및 전달정보를 포함하는 Object 정보로 다음의 3가지 위치로 구분됩니다
-    - 초기화시 전달 인자 옵션
-    - 학습플레이어 기본 옵션
-    - videojs 기본 옵션
+
+- 플레이어의 초기화 설정 및 전달정보를 포함하는 Object 정보로 다음의 3 가지 위치로 구분됩니다
+
+  - 초기화시 전달 인자 옵션
+  - 학습플레이어 기본 옵션
+  - videojs 기본 옵션
 
 - 전달되는 위치에 따라 구분되었을뿐 최종적으로는 상위의 기재된 순서로 deep-merge 되어 플레이어로 전달되어집니다.
 
 - 용도에 따라 다음과 같이 사용할 수 있습니다.
-    - 전달 인자 옵션 : 영상의 관련정보 및 추가정보의 전달 (영상경로, 자막, 강의명, 북마크 등등)
-    - 학습플레이어 기본 옵션 : videojs기본 옵션을 학습 플레이어 옵션으로 재구성 및 공통 함수(북마크 조회, 학습이력저장 등등) 선언
-
+  - 전달 인자 옵션 : 영상의 관련정보 및 추가정보의 전달 (영상경로, 자막, 강의명, 북마크 등등)
+  - 학습플레이어 기본 옵션 : videojs 기본 옵션을 학습 플레이어 옵션으로 재구성 및 공통 함수(북마크 조회, 학습이력저장 등등) 선언
 
 ```javascript
 // Default options for the learnplayer.
@@ -219,7 +225,7 @@ window.defaultOpts = {
   textTrackSettings: false, // videojs의 기본옵션인 자막 스타일 변경 콤포넌트의 사용 여부
   persistTextTrackSettings: false, // videojs의 기본옵션인 자막 스타일 변경 콤포넌트의 변경값 저장기능의 사용 여부
   playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2], // 배속 목록
-  children: ["topbarWrap", "mediaLoader", "posterImage", "textTrackDisplay", "loadingSpinner", "bigPlay1Button", "resolutionOSDButton", "controlBar", "errorDisplay","messageLayer", "resizeManager"], // 플레이어의 자녀 콤포넌트 목록 정의
+  children: ["topbarWrap", "mediaLoader", "posterImage", "textTrackDisplay", "loadingSpinner", "bigPlay1Button", "resolutionOSDButton", "controlBar", "errorDisplay", "messageLayer", "resizeManager"], // 플레이어의 자녀 콤포넌트 목록 정의
   controlBar: {
     volumePanel: {
       inline: false
@@ -246,7 +252,7 @@ window.defaultOpts = {
     ]
     // 하단 컨트롤의 자녀 콤포넌트 목록 정의
   },
-  // skin : ['learnplayer-blue.css'], //추가 스킨 목록 사용 
+  // skin : ['learnplayer-blue.css'], //추가 스킨 목록 사용
   hotkey: {
     volumeStep: 0.1,
     seekStep: 5,
@@ -298,37 +304,39 @@ window.defaultOpts = {
 <hr  />
 
 ## 함수
-- 초기화된 player의 함수
-    - dispose() 생성된 플레이어를 삭제합니다. (event, element)
-    - volume()  음량 반환 및 변경 합니다.
-    - muted() 음소거 여부 반환 및 변경 합니다.
-    - isFullscreen() 전체화면 상태 여부 반환 및 상태 여부 변경 합니다.
-    - requestFullscreen() 전체화면으로 요청합니다.
-    - exitFullscreen() 전체화면 해제를 요청합니다.
-    - play() 재생합니다.
-    - pause() 일시 정지합니다.
-    - paused() 일시 정지 상태 여부를 반환합니다.
-    - currentTime() 현재 재생위치의 시간값을 반환 및 시간값을 변경합니다.
-    - duration() 영상의 총재생 시간값을 반환 및 시간값을 변경합니다.
-    - remainingTime() 총재생 시간을 기준으로 남은 시간값을 반환합니다.
-    - buffered() 버퍼링된 시간범위 객체를 반환합니다.
-    - bufferedPercent() 버퍼링된 시간객체를 총재생 시간 기준의 백분율을 반환합니다.
-    - src() 영상정보 경로 정보의 반환 및 변경합니다.
-    <br/> * 학습플레이어는 품질변경을 위한 정보변경 함수가 존재합니다. updateSrc()
-    <br/> * 일관된 개발을 위해 src() 조회 용도로만 사용 바랍니다.
-    - poster() 포스트 정보의 반환 및 변경합니다.
-    - 작성중..
+
+- 초기화된 player 의 함수
+
+  - dispose() 생성된 플레이어를 삭제합니다. (event, element)
+  - volume() 음량 반환 및 변경 합니다.
+  - muted() 음소거 여부 반환 및 변경 합니다.
+  - isFullscreen() 전체화면 상태 여부 반환 및 상태 여부 변경 합니다.
+  - requestFullscreen() 전체화면으로 요청합니다.
+  - exitFullscreen() 전체화면 해제를 요청합니다.
+  - play() 재생합니다.
+  - pause() 일시 정지합니다.
+  - paused() 일시 정지 상태 여부를 반환합니다.
+  - currentTime() 현재 재생위치의 시간값을 반환 및 시간값을 변경합니다.
+  - duration() 영상의 총재생 시간값을 반환 및 시간값을 변경합니다.
+  - remainingTime() 총재생 시간을 기준으로 남은 시간값을 반환합니다.
+  - buffered() 버퍼링된 시간범위 객체를 반환합니다.
+  - bufferedPercent() 버퍼링된 시간객체를 총재생 시간 기준의 백분율을 반환합니다.
+  - src() 영상정보 경로 정보의 반환 및 변경합니다.
+    <br/> _ 학습플레이어는 품질변경을 위한 정보변경 함수가 존재합니다. updateSrc()
+    <br/> _ 일관된 개발을 위해 src() 조회 용도로만 사용 바랍니다.
+  - poster() 포스트 정보의 반환 및 변경합니다.
+  - 작성중..
 
   > **note :** videojs player-workflows <a href="https://docs.videojs.com/tutorial-player-workflows.html" target="_blank">link</a>
 
   > **note :** Media elements <a href="https://html.spec.whatwg.org/multipage/media.html#media-elements" target="_blank">link</a>
 
 - 학습 플레이어 함수
-    - updateSrc() 선택된 품질의 영상경로를 반환 또는 변경(전체품질의 배열)합니다.
-    - currentResolution() 선택된 품질의 영상정보를 반환 또는 품질 label로 변경합니다.
-    - changeSouece() 초기화시 전달되는 영상정보와 동일하게 플레이어의 정보를 변경합니다.
-    - getTimeInfo() 사용자의 학습정보를 반환합니다.
-    - 작성중..
+  - updateSrc() 선택된 품질의 영상경로를 반환 또는 변경(전체품질의 배열)합니다.
+  - currentResolution() 선택된 품질의 영상정보를 반환 또는 품질 label 로 변경합니다.
+  - changeSouece() 초기화시 전달되는 영상정보와 동일하게 플레이어의 정보를 변경합니다.
+  - getTimeInfo() 사용자의 학습정보를 반환합니다.
+  - 작성중..
 
 <hr  />
 
@@ -352,6 +360,25 @@ window.defaultOpts = {
 
 <hr  />
 
+## 이슈
+
+- 자동재생
+  - Chrome's autoplay policies
+    - <a href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes" target="_blank">link</a>
+    - <a href="https://blog.naver.com/dragmove/221301904012" target="_blank">번역 link</a>
+  
+  - Autoplay Best Practices with Video.js <a href="https://blog.videojs.com/autoplay-best-practices-with-video-js/" target="_blank">link</a>
+  
+  - iOS 환경에서 비디오 자동재생 사용하기 <a href="https://iropke.com/archive/video-autoplay.html" target="_blank">link</a>
+  
+  - Auto-Play Policy Changes for macOS <a href="https://webkit.org/blog/7734/auto-play-policy-changes-for-macos/" target="_blank">link</a>
+  
+  - New &lt;video&gt; Policies for iOS (autoplay, playsInline) <a href="https://webkit.org/blog/6784/new-video-policies-for-ios/" target="_blank">link</a>
+
+- Media controls customization
+    - CHrome 58 update <a href="https://developers.google.com/web/updates/2017/03/chrome-58-media-updates#controlslist" target="_blank">link</a>
+    - HTMLMediaElement controlsList explained <a href="https://github.com/WICG/controls-list/blob/gh-pages/explainer.md" target="_blank">link</a>
+
 ## 배포 노트
 
 - 작성중
@@ -369,11 +396,12 @@ window.defaultOpts = {
 <hr  />
 
 ## Credits
+
 - 학습플레이어는 많은 위대한 프로그래머들의 기술요소에 영감을 받았습니다.
-    - videojs : Apache License 2.0
-    - videjs.hotkeys : Apache License 2.0
-    - videojs-abloop : MIT License
-    - videojs-resolution-switcher : Apache License 2.0
-    - videojs-dock : Apache License 2.0
+  - videojs : Apache License 2.0
+  - videjs.hotkeys : Apache License 2.0
+  - videojs-abloop : MIT License
+  - videojs-resolution-switcher : Apache License 2.0
+  - videojs-dock : Apache License 2.0
 
 <hr  />
