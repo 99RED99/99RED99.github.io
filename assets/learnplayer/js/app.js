@@ -1,36 +1,31 @@
-// requirejs(['video.js'], function (vjs) {
-//     vjs.options.autoSetup = false;
-//     window.HELP_IMPROVE_VIDEOJS = false;
-//     window.videojs = vjs;
-// });
+var MIN_TEXT = '';
+MIN_TEXT = '.min';
+var VJS_MODULE = ['video' + MIN_TEXT];
+var VJS_CONFIG = ['learnplayer-config' + MIN_TEXT];
+var VJS_LANGS = ['lang/ko', 'lang/en'];
+var VJS_PLUGINS = ['videojs.hotkeys' + MIN_TEXT, 'videojs-abloop' + MIN_TEXT, 'videojs-learnplayer' + MIN_TEXT];
+var VJS_CSS = ['video-js' + MIN_TEXT, 'learnplayer' + MIN_TEXT];
+var SHIMS = {};
+VJS_CONFIG.concat(VJS_LANGS, VJS_PLUGINS).forEach(function (item, index) {
+    SHIMS[item] = {
+        deps: ['preSetting'].concat(VJS_MODULE)
+    }
+});
 require.config({
     path: {
         'lang/ko': 'lang'
     },
-    shim: {
-        'learnplayer-config.min': {
-            deps: ['video.min']
-        },
-        'lang/ko': {
-            deps: ['video.min']
-        },
-        'lang/en': {
-            deps: ['video.min']
-        },
-        'videojs.hotkeys.min': {
-            deps: ['video.min']
-        },
-        'videojs-abloop.min': {
-            deps: ['video.min']
-        },
-        'videojs-learnplayer.min': {
-            deps: ['video.min']
-        }
-    }
+    shim: SHIMS
 });
-require(['learnplayer-config.min'], function () {});
 
-window.HELP_IMPROVE_VIDEOJS = false;
+define('preSetting', VJS_MODULE, function (vjs) {
+    vjs.options.autoSetup = false;
+    window.HELP_IMPROVE_VIDEOJS = false;
+    window.videojs = vjs;
+});
+
+require(['preSetting'].concat(VJS_MODULE, VJS_CONFIG), function () {});
+
 // Default options for the learnplayer.
 window.defaultOpts = {
     controls: true,
