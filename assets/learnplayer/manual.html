@@ -18,7 +18,8 @@
     <script>
         var playerObj;
         document.addEventListener('learnplayerReady', function () {
-            playerObj = videojs('video1', {
+            // arguments : element selector, options(object || null)
+            playerObj = videojs('playerEl', {
                 sources: [{
                     src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
                     type: 'video/mp4',
@@ -29,35 +30,26 @@
                     type: 'video/mp4',
                     label: '일반화질',
                     res: '480'
-                }],
+                }], // 영상 품질 정보
                 tracks: [{
-                        src: 'track/captions.ko.LS0000000010646826.vtt',
-                        kind: 'captions',
+                        src: 'track/captions.ko.LS0000000010646826.vtt', // 자막 경로
+                        kind: 'captions', // 자막 유형 (captions | subtitles)
                         srclang: 'ko',
-                        label: '한국어'
-                        // default: false
+                        label: '한국어', // 자막 메뉴에 노출할 text
+                        default: false // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
                     },
                     {
                         src: 'track/captions.en.vtt',
                         kind: 'subtitles',
                         srclang: 'en',
-                        label: '영어'
-                        // default: true
+                        label: '영어',
+                        default: false
                     },
-                    // ,
-                    // {
-                    //     src: 'track/captions.ar.vtt',
-                    //     kind: 'subtitles',
-                    //     srclang: 'ar',
-                    //     label: 'English',
-                    //     default: true
-                    // }
-                    ,
                     {
                         src: [{
-                                startTime: 0,
-                                endTime: 10,
-                                text: '수동 인덱스 1'
+                                startTime: 0, // 인덱스 시작시간
+                                endTime: 10, // 인덱스 종료시간 (플레이어의 현재시간에 따라 인덱스항목의 선택여부가 지정될수 있도록 개별인덱스 항목의 범윙를 위해 endTime을 지정함 )
+                                text: '수동 인덱스 1' // 인덱스명
                             },
                             {
                                 startTime: 11,
@@ -108,32 +100,19 @@
                         kind: 'chapters',
                         srclang: 'en',
                         label: 'English'
-                        // default: true
-                    }
-                    // ,
-                    // {
-                    //     src: 'track/chapters.en.vtt',
-                    //     kind: 'chapters',
-                    //     srclang: 'en',
-                    //     label: 'English'
-                    // }
-                ],
-                poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg',
-                // autoplay: false,
-                // width: '800px',
-                // fluid: true,
-                // aspectRatio: '16:3',
-                // language: 'ko-kr',
+                    } // 인덱스 정보 (자막유형 chapters를 대신한 object data)
+                ], // 언어별 자막(captions, subtitles) 및 인덱스(챕터) 정보
+                poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg', // 영상 재생전에 우선 노출되는 포스트 이미지)
                 topbar: {
                     topbarText: {
                         title: '강의제목이 노출 되는 위치 입니다. 길이가 길어지면 말줄임 표시가 되는 형식입니다.'
-                    }
-                },
+                    } // 학습도구 영역의 타이틀 정보 (통상 강의명이 노출)
+                },  // 학습도구 영역 옵션
                 bookmarks: {
                     items: [{
-                            startTime: 0,
-                            endTime: 10,
-                            text: '북마크 1'
+                            startTime: 0, // 시작시간
+                            endTime: 10, // 종료시간
+                            text: '북마크 1' // 북마크명
                         },
                         {
                             startTime: 11,
@@ -146,8 +125,13 @@
                             text: '북마크 33'
                         }
                     ]
+                }, // 북마크 전달정보
+                // 추가적으로 전달할 정보
+                extraData: {
+                    courseId: 'CS001',
+                    lectId: 'LS002',
+                    etc: '..'
                 }
-
             });
         });
     </script>
@@ -155,7 +139,7 @@
 
 <body>
     <div style="max-width: 1024px;">
-        <video id="video1" class="video-js vjs-default-skin" controlsList="nodownload">
+        <video id="playerEl" class="video-js vjs-default-skin" controlsList="nodownload">
             <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser
                 that
                 <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
