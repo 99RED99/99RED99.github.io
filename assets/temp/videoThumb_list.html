@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Video | HTML5 Video Player</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            min-width: 200px;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            -webkit-text-size-adjust: none;
+        }
+
+        .wrap {
+            padding: 25px;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .player_box {
+            float: left;
+            width: 50%;
+        }
+
+        .lectList_box {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
+
+        .lectList_box li {
+            /* height: 40px; */
+            line-height: 40px;
+            list-style: disc;
+            list-style-position: inside;
+            padding-left: 10px
+        }
+
+        .lectList_box li span.videoThumb {
+            width: 100px;
+            height: 100px;
+        }
+
+        .lectList_box li video {
+            width: 100px;
+        }
+
+        .lectList_box li.selected {
+            color: red;
+        }
+
+        .lectList_box li:nth-child(2n + 1) {
+            background-color: #f7d87a;
+        }
+
+        .lectList_box li:nth-child(2n) {
+            background-color: #c8ce8d;
+        }
+
+        img.thumb {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+
+<body>
+
+    <h1>강의 목록형 플레이어 정보 변경</h1>
+    <div class="wrap">
+        <div class="player_box">
+            <video id="playerArea"></video>
+        </div>
+        <div class="lectList_box">
+            <ul>
+                <li>
+                    <span class='videoThumb'>
+                        <video src="http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4#t=60,61"
+                            muted>
+                    </span>
+                    <span>강의1</span>
+                </li>
+                <li>
+                    <span class='videoThumb'>
+                        <video src="http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4#t=70,71"
+                            muted>
+                    </span>
+                    <span>강의1</span>
+                </li>
+                <li>
+                    <span class='videoThumb'>
+                        <video src="http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4#t=100,101"
+                            muted>
+                    </span>
+                    <span>강의1</span>
+                </li>
+                <li>
+                    <span class='videoThumb'>
+                        <video src="http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4#t=200,201"
+                            muted>
+                    </span>
+                    <span>강의1</span>
+                </li>
+                <li>
+                    <span class='videoThumb'>
+                        <video src="http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4#t=250,251"
+                            muted>
+                    </span>
+                    <span>강의1</span>
+                </li>
+                <li>
+                    <span class='videoThumb'>
+                        <video src="http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4#t=400,401"
+                            muted>
+                    </span>
+                    <span>강의1</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
