@@ -13,14 +13,27 @@ author: red
 ## 개요
 
 learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장 플레이어입니다.<br/>
-버전 1.0.0 의 배포일(18.09.11.)을 기준으로 videojs 7.1.0 을 기반으로 플러그인 타입으로 개발되었으며
-기능 및 제공 범위는 videojs 를 기반으로 합니다.
+버전 1.0.0 의 최초 배포일(18.09.11.)을 기점으로 videojs 7.1.0 을 기초한 플러그인 타입으로 개발되었으며
+기능 및 제공 범위는 videojs 에 종속적입니다.
 
 > **note :** videojs <a href="https://videojs.com/">link</a>
 
 ## 버전별 다운로드
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.2.zip" target="_blank">v1.0.0 (18.09.20)</a>
+
+<!-- - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.4.zip" target="_blank">v1.0.3 (18.10.05)</a>
+  - 재생화질 초기화 전달 옵션값 변경 (1080,480 -> HD, SD, LD)
+  - 재생화질 기본값 '일반화질' SD로 지정 처리 -->
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.3.zip" target="_blank">v1.0.3 (18.10.03)</a>
+  - 인덱스 목록 항목에 위치값 노출 처리
+  - 인덱스 목록 항목의 길이값 노출방법을 말줄임에서 줄바꿈으로 변경 처리
+  - 초기화 옵션에 북마크 전달정보 추가 (서버 데이터 처리용 예시 함수 포함)
+  - 학습도구 영역에 북마크 버튼 추가
+  - 컨트롤바 영역의 설정메뉴에 북마크 항목 및 기능 추가
+  - 단축키 추가 (B: 설정메뉴의 북마크 메뉴 노출)
+  - 설정메뉴의 단축키 안내 내용 추가 (북마크, 배속)
+  - 소소한 UI style 수정
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.2.zip" target="_blank">v1.0.2 (18.09.20)</a>
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.1.zip" target="_blank">v1.0.1 (18.09.17)</a>
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.0.zip" target="_blank">v1.0.0 (18.09.11)</a>
 
@@ -77,89 +90,137 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 
 ```javascript
 <script>
-    var playerObj;
-    // 학습 플레이어 모듈에 종속하여 플레이어 초기화
-    document.addEventListener('learnplayerReady', function () {
-        // arguments : element selector, options(object || null)
-        playerObj = videojs('playerEl', {
-            // 영상 품질 정보
-            sources: [{
-                src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
-                type: 'video/mp4',
-                label: '고화질',
-                res: '1080'
-            }, {
-                src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
-                type: 'video/mp4',
-                label: '일반화질',
-                res: '480'
-            }],
-            // 언어별 자막(captions, subtitles) 및 인덱스(챕터) 정보
-            tracks: [{
-                    src: 'track/captions.ko.LS0000000010646826.vtt',
-                    kind: 'captions',
-                    srclang: 'ko',
-                    label: '한국어'
-                    // default: false
-                },
-                {
-                    src: 'track/captions.en.vtt',
-                    kind: 'subtitles',
-                    srclang: 'en',
-                    label: '영어'
-                    // default: true
-                },
-                {
-                    src: [{
-                            startTime: 0,
-                            endTime: 10,
-                            text: '수동 인덱스 1'
-                        },
-                        {
-                            startTime: 11,
-                            endTime: 15,
-                            text: '수동 인덱스 2'
-                        },
-                        {
-                            startTime: 16,
-                            endTime: 22,
-                            text: '수동 인덱스 3'
-                        }
-                    ],
-                    kind: 'chapters',
-                    srclang: 'en',
-                    label: 'English'
-                }
-                // ,
-                // {
-                //     src: 'track/chapters.en.vtt',
-                //     kind: 'chapters',
-                //     srclang: 'en',
-                //     label: 'English'
-                // }
-            ],
-            // 영상의 포스터 (자동재생 off시 우선 노출되는 이미지)
-            poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg',
-            // 학습도구 영역의 타이틀 정보 (통상 강의명이 노출)
-            topbar: {
-                topbarText: {
-                    title: '강의제목이 노출 되는 위치 입니다.'
-                }
-            },
-            // 추가적으로 전달할 정보
-            extraData: {
-                courseId: 'CS001',
-                lectId: 'LS002'
-                etc: '..'
-            }
-        });
+  var playerObj;
+  // 학습 플레이어 모듈에 종속하여 플레이어 초기화
+  document.addEventListener('learnplayerReady', function () {
+    // arguments : element selector, options(object || null)
+    playerObj = videojs('playerEl', {
+        sources: [{
+            src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
+            type: 'video/mp4',
+            label: '고화질',
+            res: 'hd'
+        }, {
+            src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+            type: 'video/mp4',
+            label: '일반화질',
+            res: 'sd'
+        }, {
+            src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+            type: 'video/mp4',
+            label: '저화질',
+            res: 'ld'
+        }], // 영상 품질 정보
+        tracks: [{
+              src: 'track/captions.ko.LS0000000010646826.vtt', // 자막 경로
+              kind: 'captions', // 자막 유형 (captions | subtitles)
+              srclang: 'ko',
+              label: '한국어', // 자막 메뉴에 노출할 text
+              default: false // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
+          },
+          {
+              src: 'track/captions.en.vtt',
+              kind: 'subtitles',
+              srclang: 'en',
+              label: '영어',
+              default: false
+          },
+          {
+              src: [{
+                      startTime: 0, // 인덱스 시작시간
+                      endTime: 10, // 인덱스 종료시간 (플레이어의 현재시간에 따라 인덱스항목의 선택여부가 지정될수 있도록 개별인덱스 항목의 범윙를 위해 endTime을 지정함 )
+                      text: '수동 인덱스 1' // 인덱스명
+                  },
+                  {
+                      startTime: 11,
+                      endTime: 15,
+                      text: '수동 인덱스 2'
+                  },
+                  {
+                      startTime: 16,
+                      endTime: 22,
+                      text: '수동 인덱스 3'
+                  },
+                  {
+                      startTime: 22,
+                      endTime: 55,
+                      text: '수동 인덱스 444444444444444444444444444444  44444444444444444444444444444444444444444444'
+                  },
+                  {
+                      startTime: 55,
+                      endTime: 80,
+                      text: '수동 인덱스 5'
+                  },
+                  {
+                      startTime: 80,
+                      endTime: 100,
+                      text: '수동 인덱스 6'
+                  },
+                  {
+                      startTime: 100,
+                      endTime: 110,
+                      text: '수동 인덱스 7'
+                  },
+                  {
+                      startTime: 110,
+                      endTime: 150,
+                      text: '수동 인덱스 8'
+                  },
+                  {
+                      startTime: 150,
+                      endTime: 200,
+                      text: '수동 인덱스 9'
+                  },
+                  {
+                      startTime: 200,
+                      endTime: 250,
+                      text: '수동 인덱스 10'
+                  }
+              ],
+              kind: 'chapters',
+              srclang: 'en',
+              label: 'English'
+          } // 인덱스 정보 (자막유형 chapters를 대신한 object data)
+      ], // 언어별 자막(captions, subtitles) 및 인덱스(챕터) 정보
+      poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg', // 영상 재생전에 우선 노출되는 포스트 이미지)
+      topbar: {
+          topbarText: {
+              title: '강의제목이 노출 되는 위치 입니다. 길이가 길어지면 말줄임 표시가 되는 형식입니다.'
+          } // 학습도구 영역의 타이틀 정보 (통상 강의명이 노출)
+      },  // 학습도구 영역 옵션
+      bookmarks: {
+          items: [{
+                  startTime: 0, // 시작시간
+                  endTime: 10, // 종료시간
+                  text: '북마크 1' // 북마크명
+              },
+              {
+                  startTime: 11,
+                  endTime: 15,
+                  text: '북마크 2'
+              },
+              {
+                  startTime: 16,
+                  endTime: 22,
+                  text: '북마크 33'
+              }
+          ]
+      }, // 북마크 전달정보
+      // 추가적으로 전달할 정보
+      extraData: {
+          courseId: 'CS001',
+          lectId: 'LS002',
+          etc: '..'
+      }
     });
+  });
 </script>
 ```
 
 - videojs()를 이용한 플레이어 초기화 호출 전 모듈의 로드 완료시 커스텀 이벤트 learnplayerReady
-    - 해당이벤트는 플레이어 모듈의 로드가 완료된 시점에 발생하며 videojs 글로벌 함수의 호출 가능여부를 보장합니다.
-  
+
+  - 해당이벤트는 플레이어 모듈의 로드가 완료된 시점에 발생하며 videojs 글로벌 함수의 호출 가능여부를 보장합니다.
+
 - 플레이어의 초기화 이후 준비완료 상태시의 프로그래밍<br/>
   플레이어는 비동기로 로드되므로 (언제 준비될지 확정불가) 준비완료 상태의 콜벡을 다음의 3 가지 형태로 제공합니다.
   1. Anonymous function
@@ -213,11 +274,11 @@ window.defaultOpts = {
   controls: true, // 하단 컨트롤러 사용 여부
   autoplay: true, // 자동 재생 사용 여부 [false | true | muted | play | any]
   preload: "auto", // 비디오 데이터를 미리 다운로드할지 여부 [auto | true | metadata | none]
-  // width: '600px', // 플레이어의 가로 길이
-  // height: '300px', // 플레이어의 세로 길이
+  // width: '600px', // 플레이어의 고정 가로 길이
+  // height: '300px', // 플레이어의 고정 세로 길이
+  // aspectRatio: '16:2', // 플레이어 고정 비율
   fluid: true, // 가로 새로 고정값이 아닌 부모 컨테이너에 맞게 유동 변경 여부
   learnMode: true, // width, heigh, fluid등의 크기 옵션을 무시하고 학습형 스타일을 사용할지 여부
-  // aspectRatio: '16:2',
   playsinline: true, // iOS대응 페이지내 재생 여부
   html5: {
     nativeTextTracks: false
@@ -229,8 +290,8 @@ window.defaultOpts = {
   children: ["topbarWrap", "mediaLoader", "posterImage", "textTrackDisplay", "loadingSpinner", "bigPlay1Button", "resolutionOSDButton", "controlBar", "errorDisplay", "messageLayer", "resizeManager"], // 플레이어의 자녀 콤포넌트 목록 정의
   controlBar: {
     volumePanel: {
-      inline: false
-    }, // 하단 컨트롤의 볼률 슬라이어 노출 방식 여부 (inline:false => 새로노출)
+      inline: false // 하단 컨트롤의 볼률 슬라이어 노출 방식 여부 (false: 새로노출)
+    },
     children: [
       "playToggle",
       "volumePanel",
@@ -253,6 +314,12 @@ window.defaultOpts = {
     ]
     // 하단 컨트롤의 자녀 콤포넌트 목록 정의
   },
+  contextmenu: {
+    cancel: true,
+    sensitivity: 10,
+    wait: 500,
+    disabled: false
+  },
   // skin : ['learnplayer-blue.css'], //추가 스킨 목록 사용
   hotkey: {
     volumeStep: 0.1,
@@ -262,11 +329,11 @@ window.defaultOpts = {
     enableFullscreen: true,
     enableNumbers: true,
     enableJogStyle: false,
-    alwaysCaptureHotkeys: true,
+    alwaysCaptureHotkeys: false,
     enableModifiersForNumbers: true,
     enableInactiveFocus: true,
     skipInitialFocus: false
-  }, // 단축키 플러그인 옵션
+  },
   continue: {
     time: 0, // 이어보기 위치
     isShowMessage: true, // 이어보기시에 알림 레이어 노출여부
@@ -291,10 +358,19 @@ window.defaultOpts = {
       messageType: "confirm", // [alert | confirm]
       message: "QNA 페이지로 이동 하시겠습니까?",
       title: "" // default '알림'
-    }
+    } // QNA 전달정보
   }, // 학습도구 영역 옵션
+  bookmarks: {
+    items: [],
+    isUse: true,
+    extraFunctions: {
+      add: addBookmark,
+      modify: modifyBookmark,
+      remove: deleteBookmark
+    }
+  }, // 북마크 전달정보
   playerInfo: {
-    innerHtml: "EOSF player 1.0" // text or tag Element
+    innerHtml: "EBS sharePlayer" // text or tag Element
   }, // 플레이어 버전 정보
   debug: false // videojs의 로그 출력 여부
 };
@@ -364,25 +440,23 @@ window.defaultOpts = {
 ## 이슈
 
 - 자동재생
+
   - Chrome's autoplay policies
+
     - <a href="https://developers.google.com/web/updates/2017/09/autoplay-policy-changes" target="_blank">link</a>
     - <a href="https://blog.naver.com/dragmove/221301904012" target="_blank">번역 link</a>
-  
+
   - Autoplay Best Practices with Video.js <a href="https://blog.videojs.com/autoplay-best-practices-with-video-js/" target="_blank">link</a>
-  
+
   - iOS 환경에서 비디오 자동재생 사용하기 <a href="https://iropke.com/archive/video-autoplay.html" target="_blank">link</a>
-  
+
   - Auto-Play Policy Changes for macOS <a href="https://webkit.org/blog/7734/auto-play-policy-changes-for-macos/" target="_blank">link</a>
-  
+
   - New &lt;video&gt; Policies for iOS (autoplay, playsInline) <a href="https://webkit.org/blog/6784/new-video-policies-for-ios/" target="_blank">link</a>
 
 - Media controls customization
-    - CHrome 58 update <a href="https://developers.google.com/web/updates/2017/03/chrome-58-media-updates#controlslist" target="_blank">link</a>
-    - HTMLMediaElement controlsList explained <a href="https://github.com/WICG/controls-list/blob/gh-pages/explainer.md" target="_blank">link</a>
-
-## 배포 노트
-
-- 작성중
+  - CHrome 58 update <a href="https://developers.google.com/web/updates/2017/03/chrome-58-media-updates#controlslist" target="_blank">link</a>
+  - HTMLMediaElement controlsList explained <a href="https://github.com/WICG/controls-list/blob/gh-pages/explainer.md" target="_blank">link</a>
 
 <hr  />
 
