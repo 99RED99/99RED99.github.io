@@ -48,7 +48,7 @@ window.defaultOpts = {
         'topbarWrap',
         'mediaLoader',
         'posterImage',
-        'textTrackDisplay',
+        'textTrackCustomDisplay',
         'loadingSpinner',
         'bigPlay1Button',
         'resolutionOSDButton',
@@ -112,7 +112,7 @@ window.defaultOpts = {
     }, // 이어보기 옵션
     resolution: {
         ui: false,
-        default: 'high',
+        default: 'SD',
         dynamicLabel: false
     }, // 품질변경 옵션
     topbar: {

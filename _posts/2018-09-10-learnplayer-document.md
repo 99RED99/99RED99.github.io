@@ -20,10 +20,14 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 
 ## 버전별 다운로드
 
-
-<!-- - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.4.zip" target="_blank">v1.0.3 (18.10.05)</a>
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.4.zip" target="_blank">v1.0.4 (18.10.05)</a>
   - 재생화질 초기화 전달 옵션값 변경 (1080,480 -> HD, SD, LD)
-  - 재생화질 기본값 '일반화질' SD로 지정 처리 -->
+  - 재생화질 기본값 '일반화질'인 default: 'SD' 로 지정 처리
+  - 자막파일별 유형변경 처리 기능 추가 (smi | srt to vtt)
+  - 자막파일별 유형변경 처리를 위해 초기화 전달 옵션값 class 추가 (vtt | smi | srt)
+  - 인덱스 오브젝트 배열을 vtt chapter 유형으로 변경 기능 수정 ('Text Track parsing errors' 대응)
+  - 인덱스 오브젝트 배열을 vtt chapter 유형으로 변경 처리를 위해 초기화 전달 옵션값 class 추가 (vtt | object)
+  - 초기화 전달 옵션값에 커스텀 데이터 'extraData' 추가
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.3.zip" target="_blank">v1.0.3 (18.10.03)</a>
   - 인덱스 목록 항목에 위치값 노출 처리
   - 인덱스 목록 항목의 길이값 노출방법을 말줄임에서 줄바꿈으로 변경 처리
@@ -343,7 +347,7 @@ window.defaultOpts = {
   }, // 이어보기 옵션
   resolution: {
     ui: false,
-    default: "high",
+    default: "SD",
     dynamicLabel: false
   }, // 품질변경 옵션
   topbar: {

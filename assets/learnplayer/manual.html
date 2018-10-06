@@ -24,26 +24,50 @@
                     src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
                     type: 'video/mp4',
                     label: '고화질',
-                    res: '1080'
+                    res: 'HD'
                 }, {
                     src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
                     type: 'video/mp4',
                     label: '일반화질',
-                    res: '480'
+                    res: 'SD'
+                }, {
+                    src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+                    type: 'video/mp4',
+                    label: '저화질',
+                    res: 'LD'
                 }], // 영상 품질 정보
-                tracks: [{
+                tracks: [
+                    {
+                        src: 'track/subtitle.en.smi',
+                        kind: 'subtitles',
+                        srclang: 'en',
+                        label: '영어-smi',
+                        default: false,
+                        class: 'smi'
+                    },
+                    {
+                        src: 'track/subtitle.en.srt', // 자막 경로
+                        kind: 'subtitles', // 자막 유형 (captions | subtitles)
+                        srclang: 'en',
+                        label: '영어-srt', // 자막 메뉴에 노출할 text
+                        default: false, // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
+                        class: 'srt' // 자막유형 (vtt | smi | srt)
+                    },
+                    {
                         src: 'track/captions.ko.LS0000000010646826.vtt', // 자막 경로
                         kind: 'captions', // 자막 유형 (captions | subtitles)
                         srclang: 'ko',
-                        label: '한국어', // 자막 메뉴에 노출할 text
-                        default: false // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
+                        label: '한국어-vtt', // 자막 메뉴에 노출할 text
+                        default: false, // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
+                        class: 'vtt' // 자막유형 (vtt | smi | srt)
                     },
                     {
                         src: 'track/captions.en.vtt',
                         kind: 'subtitles',
                         srclang: 'en',
-                        label: '영어',
-                        default: false
+                        label: '영어-vtt',
+                        default: false,
+                        class: 'vtt'
                     },
                     {
                         src: [{
@@ -99,7 +123,8 @@
                         ],
                         kind: 'chapters',
                         srclang: 'en',
-                        label: 'English'
+                        label: 'English',
+                        class: 'object' // 인덱스 유형 (vtt | object)
                     } // 인덱스 정보 (자막유형 chapters를 대신한 object data)
                 ], // 언어별 자막(captions, subtitles) 및 인덱스(챕터) 정보
                 poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg', // 영상 재생전에 우선 노출되는 포스트 이미지)
