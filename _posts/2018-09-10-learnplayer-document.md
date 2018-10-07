@@ -19,7 +19,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 > **note :** videojs <a href="https://videojs.com/">link</a>
 
 ## 버전별 다운로드
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.4.zip" target="_blank">v1.0.5 (18.10.07) - html5플레이어_20181004</a>
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.5.zip" target="_blank">v1.0.5 (18.10.07)</a>
   - 공통 : 영상 재생 중 영역상영내 일시정지(정지중에는 재생)버튼이 없어지지 않고 계속 노출됨
     - 컨트롤러 및 학습도구 영역과 함께 사라지도록 적용
   - 영상 컨트롤러 : CC버튼의 경우 비활성화 회색/ 활성화 흰색으로 적용
