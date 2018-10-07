@@ -98,10 +98,22 @@ window.defaultOpts = {
         enableFullscreen: true,
         enableNumbers: true,
         enableJogStyle: false,
-        alwaysCaptureHotkeys: false,
+        alwaysCaptureHotkeys: true,
         enableModifiersForNumbers: true,
         enableInactiveFocus: true,
         skipInitialFocus: false,
+    },
+    touchoverlay: {
+        fullscreen: {
+            enterOnRotate: true,
+            lockOnRotate: true,
+            iOS: true
+        },
+        touchControls: {
+            seekSeconds: 10,
+            tapTimeout: 300,
+            disableOnEnd: false
+        }
     },
     continue: {
         time: 0, // 이어보기 위치
