@@ -19,6 +19,24 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 > **note :** videojs <a href="https://videojs.com/">link</a>
 
 ## 버전별 다운로드
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.6.zip" target="_blank">v1.0.6 (18.10.09)</a>
+  - 초기화 옵션 'playsinline' 항목삭제 iOS의 버전여부에 따라 자동 부여 처리
+  - 모바일에서 장치회전시(새로에서 가로) 전체화면 으로 노출되도록 수정(재생 중일때만 기능 동작함, iOS는 버전 10부터 기능 동작함)
+  - 모바일에서 컨트롤 영역의 전체화면 버튼 클릭시 가로 전체화면으로 노출되도록 수정(iOS는 가로고정 기능이 불가)
+  - 모바일에서 전체화면(가로모드) 진입후 장치회전시 전체화면(가로모드) 유지 (iOS는 가로고정 기능이 불가)
+  - 모바일에서 영상재생 완료후 전체화면(가로모드) 유지 기능 취소 (iOS는 가로고정 기능이 불가)
+  - 모바일 iOS에서 컨트롤 스킨 유치(버전 10부터 기능 동작함)
+  - hotkeys plugin 통합
+  - 스크롤이 있는 목록영역 활성요소일때(mouseover) 볼륨휠 단축키 기능 비작동처리 하여 본동작인 스크롤 사용 처리(인덱스 목록, 북마크 목록)
+  - 입력항목 INPUT 영역이 활성요소일때 단축키 기능 비작동처리
+  - 북마크 입력항목 검증로직 기능 추가 (포커스, 문자열 초기화, 검증실패시 이전값 셋팅)
+  - 학습도구영역>북마크 버튼, 단축키 북마크 호출, 설정> 북마크 메뉴 상의 기능 상이한 오료 수정
+  - 북마크 항목의 삭제버튼 노출 기준을 mouseover에서 기본 노출로 변경
+  - 북마크 항목의 삭제버튼 모바일 터치 이벤트 미반응 오류 수정
+  - 북마크 항목의 재생버튼의 모양을 재생(삼각형), 일반(불릿)으로 통일 (기존은 재생-원형삼각형 메인색, 정지-사각형, 일반-블릿, 호버-원형삼각형 흰색)
+
+
+
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.5.zip" target="_blank">v1.0.5 (18.10.07)</a>
   - 공통 : 영상 재생 중 영역상영내 일시정지(정지중에는 재생)버튼이 없어지지 않고 계속 노출됨
     - 컨트롤러 및 학습도구 영역과 함께 사라지도록 적용
@@ -502,5 +520,7 @@ window.defaultOpts = {
   - videojs-abloop : MIT License
   - videojs-resolution-switcher : Apache License 2.0
   - videojs-dock : Apache License 2.0
+  - videojs-mobile-ui : MIT License
+  - videojs-landscape-fullscreen : MIT License
 
 <hr  />

@@ -3,7 +3,7 @@ MIN_TEXT = '.min';
 var VJS_MODULE = ['video' + MIN_TEXT];
 var VJS_CONFIG = ['learnplayer-config' + MIN_TEXT];
 var VJS_LANGS = ['lang/ko', 'lang/en'];
-var VJS_PLUGINS = ['videojs.hotkeys' + MIN_TEXT, 'videojs-abloop' + MIN_TEXT, 'videojs-learnplayer' + MIN_TEXT];
+var VJS_PLUGINS = ['videojs-abloop' + MIN_TEXT, 'videojs-learnplayer' + MIN_TEXT];
 var VJS_CSS = ['video-js' + MIN_TEXT, 'learnplayer' + MIN_TEXT];
 var SHIMS = {};
 VJS_CONFIG.concat(VJS_LANGS, VJS_PLUGINS).forEach(function (item, index) {
@@ -93,19 +93,13 @@ window.defaultOpts = {
     hotkey: {
         volumeStep: 0.1,
         seekStep: 5,
-        enableMute: true,
-        enableVolumeScroll: true,
-        enableFullscreen: true,
-        enableNumbers: true,
-        enableJogStyle: false,
-        alwaysCaptureHotkeys: true,
-        enableModifiersForNumbers: true,
-        enableInactiveFocus: true,
-        skipInitialFocus: false,
+        enableMute: true, // 음소거 단축키 사용여부
+        enableVolumeScroll: true, // 볼륨 조절바 마우스휠 사용여부
+        enableFullscreen: true, // 전체화면 단축키 사용여부
+        enableNumbers: true, // 단축키 0-9 사용여부 (총재생시간의 0% ~ 100% 위치로 이동)
     },
     touchoverlay: {
         fullscreen: {
-            enterOnRotate: true,
             lockOnRotate: true,
             iOS: true
         },
