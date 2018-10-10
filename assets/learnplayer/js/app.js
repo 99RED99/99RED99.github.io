@@ -123,7 +123,7 @@ window.defaultOpts = {
     }, // 품질변경 옵션
     topbar: {
         topbarText: {
-            title: '',
+            title: '', // 미전달시 학습도구영역에 노출값 없음
         },
         qnaButton: {
             extraFunction: '', // ex) goQNApopup
