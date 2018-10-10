@@ -19,7 +19,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 > **note :** videojs <a href="https://videojs.com/">link</a>
 
 ## 버전별 다운로드
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.7.zip" target="_blank">v1.0.6 (18.10.10)</a>
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.7.zip" target="_blank">v1.0.7 (18.10.10)</a>
   - 북마크 항목 삭제후 기존 재생중인 북마크가 초기화 되지않는 오류 수정
   - 북마크 항목 삭제시 다음항목의 북마크가 재생되는 오류 수정
   - 북마크 메뉴 노출시 컨트롤 영역 고정기능이 모바일에서 미작동하는 상황 대응하여 수정
