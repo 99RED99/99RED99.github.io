@@ -1,6 +1,6 @@
 ﻿1
 00:00:00,366 --> 00:00:05,533
-This painting by Paul Cezanne is called
+22 This painting by Paul Cezanne is called
 “Still Life withApples and Fruit Bowl”
 
 2

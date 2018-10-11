@@ -19,14 +19,17 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 > **note :** videojs <a href="https://videojs.com/">link</a>
 
 ## 버전별 다운로드
+
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.8.zip" target="_blank">v1.0.8 (18.10.11)</a>
+
   - 학습도구영역>타이틀 초기화 옵션에 isUse 추가 (노출여부)
   - 학습도구영역>QNA 초기화 옵션에 isUse 추가 (노출여부)
-  - 설정>북마크 초기화 옵션에 isUse 추가(노출여부, 해당설정값에 따라 학습도구영역>북마크버튼, 설정>북마크 메뉴, 설정>단축키>단축키목록, 단축키 B 액션 에도 함께 대응함)
+  - 북마크 초기화 옵션에 isUse 추가(노출여부, 해당설정값에 따라 학습도구영역>북마크버튼, 설정>북마크 메뉴, 설정>단축키>단축키목록, 단축키 B 액션 에도 함께 대응함)
   - 인덱스 목록에 반응형 적용 (플레이어 가로기준 기본 : 30%, 499px 이하 : 70% )
   - 모바일에서 설정>단축키 메뉴 비노출 처리
 
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.7.zip" target="_blank">v1.0.7 (18.10.10)</a>
+
   - 북마크 항목 삭제후 기존 재생중인 북마크가 초기화 되지않는 오류 수정
   - 북마크 항목 삭제시 다음항목의 북마크가 재생되는 오류 수정
   - 북마크 메뉴 노출시 컨트롤 영역 고정기능이 모바일에서 미작동하는 상황 대응하여 수정
@@ -35,25 +38,27 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
   - 단축키 동작을 위한 플레이어 포커스를 잃어버리는 몇몇 상황에 대응
 
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.6.zip" target="_blank">v1.0.6 (18.10.09)</a>
-  - 초기화 옵션 'playsinline' 항목삭제 iOS의 버전여부에 따라 자동 부여 처리
-  - 모바일에서 장치회전시(새로에서 가로) 전체화면 으로 노출되도록 수정(재생 중일때만 기능 동작함, iOS는 버전 10부터 기능 동작함)
-  - 모바일에서 컨트롤 영역의 전체화면 버튼 클릭시 가로 전체화면으로 노출되도록 수정(iOS는 가로고정 기능이 불가)
-  - 모바일에서 전체화면(가로모드) 진입후 장치회전시 전체화면(가로모드) 유지 (iOS는 가로고정 기능이 불가)
-  - 모바일에서 영상재생 완료후 전체화면(가로모드) 유지 기능 취소 (iOS는 가로고정 기능이 불가)
-  - 모바일 iOS에서 컨트롤 스킨 유치(버전 10부터 기능 동작함)
+
+  - 초기화 옵션 'playsinline' 항목삭제 iOS 의 버전여부에 따라 자동 부여 처리
+  - 모바일에서 장치회전시(새로에서 가로) 전체화면 으로 노출되도록 수정(재생 중일때만 기능 동작함, iOS 는 버전 10 부터 기능 동작함)
+  - 모바일에서 컨트롤 영역의 전체화면 버튼 클릭시 가로 전체화면으로 노출되도록 수정(iOS 는 가로고정 기능이 불가)
+  - 모바일에서 전체화면(가로모드) 진입후 장치회전시 전체화면(가로모드) 유지 (iOS 는 가로고정 기능이 불가)
+  - 모바일에서 영상재생 완료후 전체화면(가로모드) 유지 기능 취소 (iOS 는 가로고정 기능이 불가)
+  - 모바일 iOS 에서 컨트롤 스킨 유치(버전 10 부터 기능 동작함)
   - hotkeys plugin 통합
   - 스크롤이 있는 목록영역 활성요소일때(mouseover) 볼륨휠 단축키 기능 비작동처리 하여 본동작인 스크롤 사용 처리(인덱스 목록, 북마크 목록)
   - 입력항목 INPUT 영역이 활성요소일때 단축키 기능 비작동처리
   - 북마크 입력항목 검증로직 기능 추가 (포커스, 문자열 초기화, 검증실패시 이전값 셋팅)
   - 학습도구영역>북마크 버튼, 단축키 북마크 호출, 설정> 북마크 메뉴 상의 기능 상이한 오류 수정
-  - 북마크 항목의 삭제버튼 노출 기준을 mouseover에서 기본 노출로 변경
+  - 북마크 항목의 삭제버튼 노출 기준을 mouseover 에서 기본 노출로 변경
   - 북마크 항목의 삭제버튼 모바일 터치 이벤트 미반응 오류 수정
   - 북마크 항목의 재생버튼의 모양을 재생(삼각형), 일반(불릿)으로 통일 (기존은 재생-원형삼각형 메인색, 정지-사각형, 일반-블릿, 호버-원형삼각형 흰색)
 
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.5.zip" target="_blank">v1.0.5 (18.10.07)</a>
+
   - 공통 : 영상 재생 중 영역상영내 일시정지(정지중에는 재생)버튼이 없어지지 않고 계속 노출됨
     - 컨트롤러 및 학습도구 영역과 함께 사라지도록 적용
-  - 영상 컨트롤러 : CC버튼의 경우 비활성화 회색/ 활성화 흰색으로 적용
+  - 영상 컨트롤러 : CC 버튼의 경우 비활성화 회색/ 활성화 흰색으로 적용
     - CC 버튼 비활성화 흰색, 활성화시 보라색 버튼으로 적용
   - 인덱스 목록 : 목록에 마우스 오버시 커서가 노출됨
     - 목록에 마우스 오버시 손가락 모양의 포인터가 노출되도록 수정
@@ -64,9 +69,9 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
   - 기타 : 등록된 자막이 없는데 CC 버튼 노출됨
     - 자막이 등록된 경우만 CC 버튼 노출
   - 기본자막 선정 로직 수정(선호순위적용)
-    - 1순위 : 초기화 전달 옵션값에 default:true 가 있는 마지막 자막정보 (선택 및 자막 자동 노출 처리)
-    - 2순위 : 초기화 전달 옵션값에 default 가 없는 경우 지역언어정보(ko, en)과 동일한 마지막 자막정보 (선택 처리)
-    - 3순위 : 1,2순위가 없을시 전달순서 중 'class: vtt' 우선 (선택 처리)
+    - 1 순위 : 초기화 전달 옵션값에 default:true 가 있는 마지막 자막정보 (선택 및 자막 자동 노출 처리)
+    - 2 순위 : 초기화 전달 옵션값에 default 가 없는 경우 지역언어정보(ko, en)과 동일한 마지막 자막정보 (선택 처리)
+    - 3 순위 : 1,2 순위가 없을시 전달순서 중 'class: vtt' 우선 (선택 처리)
   - 인덱스 강의명이 학습도구영역과 동일하게 처리한 부분을 이전 기획과 같이 인덱스 레이어 영역에 말줄임으로 표시되도록 처리
   - 현재 재생 중인 시간만 메인색 적용
   - 화면에 오버되는 메뉴인 '배속','설정','인덱스'은 선택된 메뉴만 노출되도록 선택이외 메뉴는 비노출 처리
@@ -342,7 +347,19 @@ window.defaultOpts = {
   textTrackSettings: false, // videojs의 기본옵션인 자막 스타일 변경 콤포넌트의 사용 여부
   persistTextTrackSettings: false, // videojs의 기본옵션인 자막 스타일 변경 콤포넌트의 변경값 저장기능의 사용 여부
   playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2], // 배속 목록
-  children: ["topbarWrap", "mediaLoader", "posterImage", "textTrackDisplay", "loadingSpinner", "bigPlay1Button", "resolutionOSDButton", "controlBar", "errorDisplay", "messageLayer", "resizeManager"], // 플레이어의 자녀 콤포넌트 목록 정의
+  children: [
+    "topbarWrap",
+    "mediaLoader",
+    "posterImage",
+    "textTrackCustomDisplay",
+    "loadingSpinner",
+    "bigPlay1Button",
+    "resolutionOSDButton",
+    "controlBar",
+    "errorDisplay",
+    "messageLayer",
+    "resizeManager"
+  ], // 플레이어의 자녀 콤포넌트 목록 정의
   controlBar: {
     volumePanel: {
       inline: false // 하단 컨트롤의 볼률 슬라이어 노출 방식 여부 (false: 새로노출)
@@ -379,15 +396,21 @@ window.defaultOpts = {
   hotkey: {
     volumeStep: 0.1,
     seekStep: 5,
-    enableMute: true,
-    enableVolumeScroll: true,
-    enableFullscreen: true,
-    enableNumbers: true,
-    enableJogStyle: false,
-    alwaysCaptureHotkeys: false,
-    enableModifiersForNumbers: true,
-    enableInactiveFocus: true,
-    skipInitialFocus: false
+    enableMute: true, // 음소거 단축키 사용여부
+    enableVolumeScroll: true, // 볼륨 조절바 마우스휠 사용여부
+    enableFullscreen: true, // 전체화면 단축키 사용여부
+    enableNumbers: true // 단축키 0-9 사용여부 (총재생시간의 0% ~ 100% 위치로 이동)
+  },
+  touchoverlay: {
+    fullscreen: {
+      lockOnRotate: true,
+      iOS: true
+    },
+    touchControls: {
+      seekSeconds: 10,
+      tapTimeout: 300,
+      disableOnEnd: false
+    }
   },
   continue: {
     time: 0, // 이어보기 위치
@@ -403,9 +426,11 @@ window.defaultOpts = {
   }, // 품질변경 옵션
   topbar: {
     topbarText: {
+      isUse: false, // 노출여부
       title: ""
     },
     qnaButton: {
+      isUse: false, // 노출여부
       extraFunction: "", // ex) goQNApopup
       href: "manual.html?ddd=dd&dkdjf=22#first", // ex) manual.html?ddd=dd&dkdjf=22#first
       target: "_blank",
@@ -416,8 +441,8 @@ window.defaultOpts = {
     } // QNA 전달정보
   }, // 학습도구 영역 옵션
   bookmarks: {
+    isUse: false, // 노출여부
     items: [],
-    isUse: true,
     extraFunctions: {
       add: addBookmark,
       modify: modifyBookmark,
@@ -482,7 +507,91 @@ window.defaultOpts = {
 
 ## 자막
 
-- 작성중
+- 학습플레이어에서는 3가지 파일유형을 자막으로 제공할수 있습니다.
+- 유형의 종류는 vtt, smi, srt 이며 smi와 srt의 경우 vtt유형으로 내용변경하여 제공합니다.
+
+■ vtt 문법
+
+```javascript
+WEBVTT
+
+Introduction
+00:00:01.000 --> 00:01:10.000
+Wikipedia is a great adventure. It may have
+its shortcomings, but it is the largest collective
+knowledge construction endevour
+
+Disclaimer
+00:01:10.000 --> 00:02:10.000
+This is just a track demo using VTT
+```
+
+■ smi 문법
+
+```html
+<SAMI>
+<HEAD>
+<TITLE>프로젝트명</TITLE>
+<STYLE TYPE="text/css">
+<!--
+P { margin-left:16pt; margin-right:16pt; margin-bottom:16pt; margin-top:16pt;
+    font-size:18pt; text-align:center; font-family:arial; font-weight:bold; color:#f0f0f0;
+  }
+.KRCC { Name:한국어; lang:ko-KR; SAMIType:CC; }
+
+#STDPrn { Name::Standard Print; }
+#LargePrn { Name:Large Print (22pt); font-size:22pt; }
+#SmallPrn { Name:Small Print (14pt); font-size:14pt; }
+-->
+</STYLE>
+</HEAD>
+
+<!--
+This is generated by ATS of IAndT
+http://ats.iandt.tv
+-->
+
+<BODY>
+<SYNC Start=0><P Class=KRCC>
+<SYNC Start=366><P Class=KRCC>11 This painting by Paul Cezanne is called
+“Still Life withApples and Fruit Bowl”
+<SYNC Start=5533><P Class=KRCC>Take a look at the apples
+in the painting.
+<SYNC Start=7933><P Class=KRCC>Cezanne drew apples
+that are near the viewer larger
+<SYNC Start=10700><P Class=KRCC>and the apples
+that were far away smaller.
+<SYNC Start=129033><P Class=KRCC>Well done!
+<SYNC Start=131966><P Class=KRCC>
+<SYNC Start=999999><P Class=KRCC>
+</BODY>
+</SAMI>
+```
+
+■ srt 문법
+
+```javascript
+1
+00:00:00,366 --> 00:00:05,533
+22 This painting by Paul Cezanne is called
+“Still Life withApples and Fruit Bowl”
+
+2
+00:00:05,533 --> 00:00:07,933
+Take a look at the apples
+in the painting.
+
+3
+00:00:07,933 --> 00:00:10,700
+Cezanne drew apples
+that are near the viewer larger
+
+4
+00:00:10,700 --> 00:00:12,733
+and the apples
+that were far away smaller.
+
+```
 
 <hr  />
 
