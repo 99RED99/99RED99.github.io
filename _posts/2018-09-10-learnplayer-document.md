@@ -159,121 +159,140 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
             src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
             type: 'video/mp4',
             label: '고화질',
-            res: 'hd'
+            res: 'HD'
         }, {
             src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
             type: 'video/mp4',
             label: '일반화질',
-            res: 'sd'
+            res: 'SD'
         }, {
             src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
             type: 'video/mp4',
             label: '저화질',
-            res: 'ld'
+            res: 'LD'
         }], // 영상 품질 정보
         tracks: [{
-              src: 'track/captions.ko.LS0000000010646826.vtt', // 자막 경로
-              kind: 'captions', // 자막 유형 (captions | subtitles)
-              srclang: 'ko',
-              label: '한국어', // 자막 메뉴에 노출할 text
-              default: false // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
-          },
-          {
-              src: 'track/captions.en.vtt',
-              kind: 'subtitles',
-              srclang: 'en',
-              label: '영어',
-              default: false
-          },
-          {
-              src: [{
-                      startTime: 0, // 인덱스 시작시간
-                      endTime: 10, // 인덱스 종료시간 (플레이어의 현재시간에 따라 인덱스항목의 선택여부가 지정될수 있도록 개별인덱스 항목의 범윙를 위해 endTime을 지정함 )
-                      text: '수동 인덱스 1' // 인덱스명
-                  },
-                  {
-                      startTime: 11,
-                      endTime: 15,
-                      text: '수동 인덱스 2'
-                  },
-                  {
-                      startTime: 16,
-                      endTime: 22,
-                      text: '수동 인덱스 3'
-                  },
-                  {
-                      startTime: 22,
-                      endTime: 55,
-                      text: '수동 인덱스 444444444444444444444444444444  44444444444444444444444444444444444444444444'
-                  },
-                  {
-                      startTime: 55,
-                      endTime: 80,
-                      text: '수동 인덱스 5'
-                  },
-                  {
-                      startTime: 80,
-                      endTime: 100,
-                      text: '수동 인덱스 6'
-                  },
-                  {
-                      startTime: 100,
-                      endTime: 110,
-                      text: '수동 인덱스 7'
-                  },
-                  {
-                      startTime: 110,
-                      endTime: 150,
-                      text: '수동 인덱스 8'
-                  },
-                  {
-                      startTime: 150,
-                      endTime: 200,
-                      text: '수동 인덱스 9'
-                  },
-                  {
-                      startTime: 200,
-                      endTime: 250,
-                      text: '수동 인덱스 10'
-                  }
-              ],
-              kind: 'chapters',
-              srclang: 'en',
-              label: 'English'
-          } // 인덱스 정보 (자막유형 chapters를 대신한 object data)
-      ], // 언어별 자막(captions, subtitles) 및 인덱스(챕터) 정보
-      poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg', // 영상 재생전에 우선 노출되는 포스트 이미지)
-      topbar: {
-          topbarText: {
-              title: '강의제목이 노출 되는 위치 입니다. 길이가 길어지면 말줄임 표시가 되는 형식입니다.'
-          } // 학습도구 영역의 타이틀 정보 (통상 강의명이 노출)
-      },  // 학습도구 영역 옵션
-      bookmarks: {
-          items: [{
-                  startTime: 0, // 시작시간
-                  endTime: 10, // 종료시간
-                  text: '북마크 1' // 북마크명
-              },
-              {
-                  startTime: 11,
-                  endTime: 15,
-                  text: '북마크 2'
-              },
-              {
-                  startTime: 16,
-                  endTime: 22,
-                  text: '북마크 33'
-              }
-          ]
-      }, // 북마크 전달정보
-      // 추가적으로 전달할 정보
-      extraData: {
-          courseId: 'CS001',
-          lectId: 'LS002',
-          etc: '..'
-      }
+                src: 'track/subtitle.en.smi',
+                kind: 'subtitles',
+                srclang: 'en',
+                label: '영어-smi',
+                default: false,
+                class: 'smi'
+            },
+            {
+                src: 'track/subtitle.en.srt', // 자막 경로
+                kind: 'subtitles', // 자막 유형 (captions | subtitles)
+                srclang: 'en',
+                label: '영어-srt', // 자막 메뉴에 노출할 text
+                default: false, // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
+                class: 'srt' // 자막유형 (vtt | smi | srt)
+            },
+            {
+                src: 'track/captions.ko.LS0000000010646826.vtt', // 자막 경로
+                kind: 'captions', // 자막 유형 (captions | subtitles)
+                srclang: 'ko',
+                label: '한국어-vtt', // 자막 메뉴에 노출할 text
+                default: false, // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
+                class: 'vtt' // 자막유형 (vtt | smi | srt)
+            },
+            {
+                src: 'track/captions.en.vtt',
+                kind: 'subtitles',
+                srclang: 'en',
+                label: '영어-vtt',
+                default: false,
+                class: 'vtt'
+            },
+            {
+                src: [{
+                        startTime: 0, // 인덱스 시작시간
+                        endTime: 10, // 인덱스 종료시간 (플레이어의 현재시간에 따라 인덱스항목의 선택여부가 지정될수 있도록 개별인덱스 항목의 범윙를 위해 endTime을 지정함 )
+                        text: '수동 인덱스 1' // 인덱스명
+                    },
+                    {
+                        startTime: 11,
+                        endTime: 15,
+                        text: '수동 인덱스 2'
+                    },
+                    {
+                        startTime: 16,
+                        endTime: 22,
+                        text: '수동 인덱스 3'
+                    },
+                    {
+                        startTime: 22,
+                        endTime: 55,
+                        text: '수동 인덱스 444444444444444444444444444444  44444444444444444444444444444444444444444444'
+                    },
+                    {
+                        startTime: 55,
+                        endTime: 80,
+                        text: '수동 인덱스 5'
+                    },
+                    {
+                        startTime: 80,
+                        endTime: 100,
+                        text: '수동 인덱스 6'
+                    },
+                    {
+                        startTime: 100,
+                        endTime: 110,
+                        text: '수동 인덱스 7'
+                    },
+                    {
+                        startTime: 110,
+                        endTime: 150,
+                        text: '수동 인덱스 8'
+                    },
+                    {
+                        startTime: 150,
+                        endTime: 200,
+                        text: '수동 인덱스 9'
+                    },
+                    {
+                        startTime: 200,
+                        endTime: 250,
+                        text: '수동 인덱스 10'
+                    }
+                ],
+                kind: 'chapters',
+                srclang: 'en',
+                label: 'English',
+                class: 'object' // 인덱스 유형 (vtt | object)
+            } // 인덱스 정보 (자막유형 chapters를 대신한 object data)
+        ], // 언어별 자막(captions, subtitles) 및 인덱스(챕터) 정보
+        poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg', // 영상 재생전에 우선 노출되는 포스트 이미지)
+        topbar: {
+            topbarText: {
+                title: '강의명'
+            } // 학습도구 영역의 타이틀 정보 (통상 강의명이 노출)
+        }, // 학습도구 영역 옵션
+        bookmarks: {
+            items: [{
+                    startTime: 0, // 시작시간
+                    endTime: 10, // 종료시간
+                    text: '북마크 1' // 북마크명
+                },
+                {
+                    startTime: 11,
+                    endTime: 15,
+                    text: '북마크 2'
+                },
+                {
+                    startTime: 16,
+                    endTime: 22,
+                    text: '북마크 33'
+                }
+            ]
+        }, // 북마크 전달정보
+        // 추가적으로 전달할 정보
+        extraData: {
+            courseId: 'CS001',
+            lectId: 'LS002',
+            etc: '..'
+        }
     });
-  });
+});
 </script>
 ```
 
@@ -507,8 +526,8 @@ window.defaultOpts = {
 
 ## 자막
 
-- 학습플레이어에서는 3가지 파일유형을 자막으로 제공할수 있습니다.
-- 유형의 종류는 vtt, smi, srt 이며 smi와 srt의 경우 vtt유형으로 내용변경하여 제공합니다.
+- 학습플레이어에서는 3 가지 파일유형을 자막으로 제공할수 있습니다.
+- 유형의 종류는 vtt, smi, srt 이며 smi 와 srt 의 경우 vtt 유형으로 내용변경하여 제공합니다.
 
 ■ vtt 문법
 
@@ -590,7 +609,6 @@ that are near the viewer larger
 00:00:10,700 --> 00:00:12,733
 and the apples
 that were far away smaller.
-
 ```
 
 <hr  />
