@@ -19,6 +19,12 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 > **note :** videojs <a href="https://videojs.com/">link</a>
 
 ## 버전별 다운로드
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.8.zip" target="_blank">v1.0.8 (18.10.11)</a>
+  - 학습도구영역>타이틀 초기화 옵션에 isUse 추가 (노출여부)
+  - 학습도구영역>QNA 초기화 옵션에 isUse 추가 (노출여부)
+  - 설정>북마크 초기화 옵션에 isUse 추가(노출여부, 해당설정값에 따라 학습도구영역>북마크버튼 및 단축키 B도 함께 대응함)
+  - 인덱스 목록에 반응형 적용 (플레이어 가로기준 기본 : 30%, 499px 이하 : 70% )
+
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.7.zip" target="_blank">v1.0.7 (18.10.10)</a>
   - 북마크 항목 삭제후 기존 재생중인 북마크가 초기화 되지않는 오류 수정
   - 북마크 항목 삭제시 다음항목의 북마크가 재생되는 오류 수정

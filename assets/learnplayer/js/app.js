@@ -123,9 +123,11 @@ window.defaultOpts = {
     }, // 품질변경 옵션
     topbar: {
         topbarText: {
-            title: '', // 미전달시 학습도구영역에 노출값 없음
+            isUse: false, // 노출여부
+            title: '',
         },
         qnaButton: {
+            isUse: false, // 노출여부
             extraFunction: '', // ex) goQNApopup
             href: 'manual.html?ddd=dd&dkdjf=22#first', // ex) manual.html?ddd=dd&dkdjf=22#first
             target: '_blank',
@@ -136,8 +138,8 @@ window.defaultOpts = {
         } // QNA 전달정보
     }, // 학습도구 영역 옵션
     bookmarks: {
+        isUse: false, // 노출여부
         items: [],
-        isUse: true,
         extraFunctions: {
             add: addBookmark,
             modify: modifyBookmark,
