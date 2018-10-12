@@ -117,8 +117,8 @@ window.defaultOpts = {
         title: '' // default '알림'
     }, // 이어보기 옵션
     resolution: {
+        default: 'high', // 지정화질 선택 HD(1080) | SD(480) | LD(240) 등등, high : 해상도 높은순 선택, low: 해상도 낮은순 선택, 지정화질 지정상태에서 해당 화질이 없을시 low와 동일, 미지정시 low와 동일
         ui: false,
-        default: 'SD',
         dynamicLabel: false
     }, // 품질변경 옵션
     topbar: {

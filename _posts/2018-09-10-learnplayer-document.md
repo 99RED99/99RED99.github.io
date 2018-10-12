@@ -20,6 +20,16 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 
 ## 버전별 다운로드
 
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.9.zip" target="_blank">v1.0.9 (18.10.12)</a>
+
+  - 단축키 안내에 IE 에서 전체화면 단축키 불가한 내용 추가
+  - 품질선정 로직 수정 (초기화 옵션 resolution.default 전달값)
+    - 지정화질 선택 HD(1080) | SD(480) | LD(240) 등등 전달된 sources항목의 res 와 동일값 선택
+    - high : 해상도 높은순 선택
+    - low: 해상도 낮은순 선택
+    - 지정화질 선택 상태에서 해당 화질이 없을시 low와 동일
+    - 미지정시 low와 동일
+
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.8.zip" target="_blank">v1.0.8 (18.10.11)</a>
 
   - 학습도구영역>타이틀 초기화 옵션에 isUse 추가 (노출여부)
@@ -439,8 +449,8 @@ window.defaultOpts = {
     title: "" // default '알림'
   }, // 이어보기 옵션
   resolution: {
+    default: 'high', // 지정화질 선택 HD(1080) | SD(480) | LD(240) 등등, high : 해상도 높은순 선택, low: 해상도 낮은순 선택, 지정화질 선택상태에서 해당 화질이 없을시 low와 동일, 미지정시 low와 동일
     ui: false,
-    default: "SD",
     dynamicLabel: false
   }, // 품질변경 옵션
   topbar: {

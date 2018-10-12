@@ -21,21 +21,24 @@
             // arguments : element selector, options(object || null)
             playerObj = videojs('playerEl', {
                 sources: [{
-                    src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
-                    type: 'video/mp4',
-                    label: '고화질',
-                    res: 'HD'
-                }, {
-                    src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
-                    type: 'video/mp4',
-                    label: '일반화질',
-                    res: 'SD'
-                }, {
-                    src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
-                    type: 'video/mp4',
-                    label: '저화질',
-                    res: 'LD'
-                }], // 영상 품질 정보
+                        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+                        type: 'video/mp4',
+                        label: '일반화질',
+                        res: 'SD'
+                    },
+                    {
+                        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
+                        type: 'video/mp4',
+                        label: '고화질',
+                        res: 'HD'
+                    },
+                    {
+                        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+                        type: 'video/mp4',
+                        label: '저화질',
+                        res: 'LD'
+                    }
+                ], // 영상 품질 정보
                 tracks: [{
                         src: 'track/subtitle.en.smi',
                         kind: 'subtitles',
