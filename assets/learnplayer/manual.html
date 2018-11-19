@@ -138,18 +138,23 @@
                 bookmarks: {
                     items: [{
                             startTime: 0, // 시작시간
-                            endTime: 10, // 종료시간
+                            endTime: 120, // 종료시간
                             text: '북마크 1' // 북마크명
                         },
                         {
-                            startTime: 11,
-                            endTime: 15,
+                            startTime: 110,
+                            endTime: 500,
                             text: '북마크 2'
                         },
                         {
-                            startTime: 16,
-                            endTime: 22,
+                            startTime: 510,
+                            endTime: 1200,
                             text: '북마크 33'
+                        },
+                        {
+                            startTime: 1200,
+                            endTime: 1210,
+                            text: '북마크명이 을 길게도 써보게 되지요'
                         }
                     ]
                 }, // 북마크 전달정보
@@ -172,6 +177,9 @@
                 <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
             </p>
         </video>
+    </div>
+    <div style="height: 400px;">
+        본문 내용이 길어져서 윈도우 스크롤이 생기는 상황 연출
     </div>
 </body>
 

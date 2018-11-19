@@ -114,7 +114,8 @@ window.defaultOpts = {
         isShowMessage: true, // 이어보기시에 알림 레이어 노출여부
         messageType: 'confirm', // [alert | confirm]
         message: '마지막 학습위치에서 재생하시겠습니까?<br/>&lt;br/&gt;태그로 여러줄을 입력하세요',
-        title: '' // default '알림'
+        title: '이어보기', // default '알림'
+        pauseOnOpen: true
     }, // 이어보기 옵션
     resolution: {
         default: 'high', // 지정화질 선택 HD(1080) | SD(480) | LD(240) 등등, high : 해상도 높은순 선택, low: 해상도 낮은순 선택, 지정화질 선택상태에서 해당 화질이 없을시 low와 동일, 미지정시 low와 동일
@@ -138,7 +139,7 @@ window.defaultOpts = {
         } // QNA 전달정보
     }, // 학습도구 영역 옵션
     bookmarks: {
-        isUse: false, // 노출여부
+        isUse: true, // 노출여부
         items: [],
         extraFunctions: {
             add: addBookmark,
@@ -147,7 +148,8 @@ window.defaultOpts = {
         }
     }, // 북마크 전달정보
     playerInfo: {
-        innerHtml: 'EBS sharePlayer' // text or tag Element
+        innerHtml: 'EBS SharePlayer', // text or tag Element
+        isIncludeVersion: true
     }, // 플레이어 버전 정보
     debug: false // videojs의 로그 출력 여부
 };

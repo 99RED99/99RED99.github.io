@@ -20,6 +20,30 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 
 ## 버전별 다운로드
 
+- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.10.zip" target="_blank">v1.0.10 (18.11.19)</a>
+
+  - 설정 > 북마크 입력 양식 변경
+    - "00시00분00초"로 표시하고 입력창 포커스시에 숫자값으로 입력
+    - 입력창 포커스후 5초뒤 커서 해제
+    - 입력창 블러시 입력값 검증 및 "00시00분00초"양식으로 노출
+    - 현재 재생시간 위치값을 입력창에 설정하는 기능 버튼 추가 (시작시간, 종료시간)
+    - as-is 저장/수정 용 버튼을 "저장", "수정" 텍스트 버튼으로 변경
+    - 브라우저의 가로넓이 499이하일때 시작, 종료 입력창 두줄로 노출 되도록 설정>북마크 영역 가로넓이 수정
+  
+  - 북마크 재생시 재생프로그래스 영역에 북마크 영역 표시
+    - 북마크 노출 상태시 인근 프로그래스의 radius 없이 직각표시
+    - 북마크 노출 상태시 재생프로그래스의 마우스 오버 핸들러 비노출
+    - 재생프로그래스에서 마우스 클릭(영상위치 이동) 또는 단축키 이동 등등 영상의 구간이동을 통해 변경된 재생위치가 북마크 영역을 벗어날 경우 북마크 해제 처리
+  
+  - 단축키 또는 버튼 클릭시 브라우저 스크롤 이동 이슈 대응
+  - 영상영역 마우스 오버시 active Element(focus) 처리하여 단축키 사용에 용의하도록 기능 수정
+  - 재생프로그래스의 마우스 오버시 노출되는 마우스디스플레이 박스의 색상 변경
+  - 플레이어 정보 노출시 버전 표시 옵션 추가
+  
+  - 이어보기 모달 노출 시기를 영상 재생전 노출로 변경
+    - 영상에 포스터 정보가 있을시 배경은 포스터 이미지 노출
+    - 자동재생이 아닌경우에(크롬 자동재생정책등) 대응하여 이어보기 모달의 버튼 "확인","취소" 에 사용자 클릭 액션으로 판단하여 재생되도록 기능 수정
+
 - <a  href="/assets/learnplayer/dest/learnplayer.v1.0.9.zip" target="_blank">v1.0.9 (18.10.12)</a>
 
   - 단축키 안내에 IE 에서 전체화면 단축키 불가한 내용 추가
@@ -125,11 +149,10 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 ├── <span>js</span>
 │&nbsp;&nbsp; ├── <span>lang/</span> : 다중 언어 지원을 위한 언어셋
 │&nbsp;&nbsp; ├── <span>test-data/</span> : 테스트용 데이터
-│&nbsp;&nbsp; ├── <span>app.js</span> : require.js의 스크립트 로딩 진입 설정
-│&nbsp;&nbsp; ├── <span>learnplayer-config.min.js</span> 플레이어 환경 설정
 │&nbsp;&nbsp; ├── <span>require.js</span> : 스크립트 종속성 관리
+│&nbsp;&nbsp; ├── <span>app.js</span> : require.js의 스크립트 로딩 진입 설정
 │&nbsp;&nbsp; ├── <span>video.min.js</span>
-│&nbsp;&nbsp; ├── <span>videojs.hotkeys.min.js</span> 단축키 플러그인
+│&nbsp;&nbsp; ├── <span>learnplayer-config.min.js</span> 플레이어 환경 설정
 │&nbsp;&nbsp; ├── <span>videojs-abloop.min.js</span> 구간반복 플러그인
 │&nbsp;&nbsp; └── <span>videojs-learnplayer.min.js</span> 학습형 플러그인
 └── manual.html
@@ -161,148 +184,155 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 ```javascript
 <script>
   var playerObj;
-  // 학습 플레이어 모듈에 종속하여 플레이어 초기화
-  document.addEventListener('learnplayerReady', function () {
-    // arguments : element selector, options(object || null)
-    playerObj = videojs('playerEl', {
-        sources: [{
-            src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
-            type: 'video/mp4',
-            label: '고화질',
-            res: 'HD'
-        }, {
-            src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
-            type: 'video/mp4',
-            label: '일반화질',
-            res: 'SD'
-        }, {
-            src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
-            type: 'video/mp4',
-            label: '저화질',
-            res: 'LD'
-        }], // 영상 품질 정보
-        tracks: [{
-                src: 'track/subtitle.en.smi',
-                kind: 'subtitles',
-                srclang: 'en',
-                label: '영어-smi',
-                default: false,
-                class: 'smi'
-            },
-            {
-                src: 'track/subtitle.en.srt', // 자막 경로
-                kind: 'subtitles', // 자막 유형 (captions | subtitles)
-                srclang: 'en',
-                label: '영어-srt', // 자막 메뉴에 노출할 text
-                default: false, // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
-                class: 'srt' // 자막유형 (vtt | smi | srt)
-            },
-            {
-                src: 'track/captions.ko.LS0000000010646826.vtt', // 자막 경로
-                kind: 'captions', // 자막 유형 (captions | subtitles)
-                srclang: 'ko',
-                label: '한국어-vtt', // 자막 메뉴에 노출할 text
-                default: false, // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
-                class: 'vtt' // 자막유형 (vtt | smi | srt)
-            },
-            {
-                src: 'track/captions.en.vtt',
-                kind: 'subtitles',
-                srclang: 'en',
-                label: '영어-vtt',
-                default: false,
-                class: 'vtt'
-            },
-            {
-                src: [{
-                        startTime: 0, // 인덱스 시작시간
-                        endTime: 10, // 인덱스 종료시간 (플레이어의 현재시간에 따라 인덱스항목의 선택여부가 지정될수 있도록 개별인덱스 항목의 범윙를 위해 endTime을 지정함 )
-                        text: '수동 인덱스 1' // 인덱스명
+        document.addEventListener('learnplayerReady', function () {
+            // arguments : element selector, options(object || null)
+            playerObj = videojs('playerEl', {
+                sources: [{
+                        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+                        type: 'video/mp4',
+                        label: '일반화질',
+                        res: 'SD'
                     },
                     {
-                        startTime: 11,
-                        endTime: 15,
-                        text: '수동 인덱스 2'
+                        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m10/20170222_143951_m.mp4',
+                        type: 'video/mp4',
+                        label: '고화질',
+                        res: 'HD'
                     },
                     {
-                        startTime: 16,
-                        endTime: 22,
-                        text: '수동 인덱스 3'
-                    },
-                    {
-                        startTime: 22,
-                        endTime: 55,
-                        text: '수동 인덱스 444444444444444444444444444444  44444444444444444444444444444444444444444444'
-                    },
-                    {
-                        startTime: 55,
-                        endTime: 80,
-                        text: '수동 인덱스 5'
-                    },
-                    {
-                        startTime: 80,
-                        endTime: 100,
-                        text: '수동 인덱스 6'
-                    },
-                    {
-                        startTime: 100,
-                        endTime: 110,
-                        text: '수동 인덱스 7'
-                    },
-                    {
-                        startTime: 110,
-                        endTime: 150,
-                        text: '수동 인덱스 8'
-                    },
-                    {
-                        startTime: 150,
-                        endTime: 200,
-                        text: '수동 인덱스 9'
-                    },
-                    {
-                        startTime: 200,
-                        endTime: 250,
-                        text: '수동 인덱스 10'
+                        src: 'http://wstr.ebs.co.kr/ebsvod/elmt/2017/10026573/m05/20170222_143951_l.mp4',
+                        type: 'video/mp4',
+                        label: '저화질',
+                        res: 'LD'
                     }
-                ],
-                kind: 'chapters',
-                srclang: 'en',
-                label: 'English',
-                class: 'object' // 인덱스 유형 (vtt | object)
-            } // 인덱스 정보 (자막유형 chapters를 대신한 object data)
-        ], // 언어별 자막(captions, subtitles) 및 인덱스(챕터) 정보
-        poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg', // 영상 재생전에 우선 노출되는 포스트 이미지)
-        topbar: {
-            topbarText: {
-                title: '강의명'
-            } // 학습도구 영역의 타이틀 정보 (통상 강의명이 노출)
-        }, // 학습도구 영역 옵션
-        bookmarks: {
-            items: [{
-                    startTime: 0, // 시작시간
-                    endTime: 10, // 종료시간
-                    text: '북마크 1' // 북마크명
-                },
-                {
-                    startTime: 11,
-                    endTime: 15,
-                    text: '북마크 2'
-                },
-                {
-                    startTime: 16,
-                    endTime: 22,
-                    text: '북마크 33'
+                ], // 영상 품질 정보
+                tracks: [{
+                        src: 'track/subtitle.en.smi',
+                        kind: 'subtitles',
+                        srclang: 'en',
+                        label: '영어-smi',
+                        default: false,
+                        class: 'smi'
+                    },
+                    {
+                        src: 'track/subtitle.en.srt', // 자막 경로
+                        kind: 'subtitles', // 자막 유형 (captions | subtitles)
+                        srclang: 'en',
+                        label: '영어-srt', // 자막 메뉴에 노출할 text
+                        default: false, // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
+                        class: 'srt' // 자막유형 (vtt | smi | srt)
+                    },
+                    {
+                        src: 'track/captions.ko.LS0000000010646826.vtt', // 자막 경로
+                        kind: 'captions', // 자막 유형 (captions | subtitles)
+                        srclang: 'ko',
+                        label: '한국어-vtt', // 자막 메뉴에 노출할 text
+                        default: false, // 기본 노출 여부 (true: 지정된 항목이 기본 노출 처리 )
+                        class: 'vtt' // 자막유형 (vtt | smi | srt)
+                    },
+                    {
+                        src: 'track/captions.en.vtt',
+                        kind: 'subtitles',
+                        srclang: 'en',
+                        label: '영어-vtt',
+                        default: false,
+                        class: 'vtt'
+                    },
+                    {
+                        src: [{
+                                startTime: 0, // 인덱스 시작시간
+                                endTime: 10, // 인덱스 종료시간 (플레이어의 현재시간에 따라 인덱스항목의 선택여부가 지정될수 있도록 개별인덱스 항목의 범윙를 위해 endTime을 지정함 )
+                                text: '수동 인덱스 1' // 인덱스명
+                            },
+                            {
+                                startTime: 11,
+                                endTime: 15,
+                                text: '수동 인덱스 2'
+                            },
+                            {
+                                startTime: 16,
+                                endTime: 22,
+                                text: '수동 인덱스 3'
+                            },
+                            {
+                                startTime: 22,
+                                endTime: 55,
+                                text: '수동 인덱스 444444444444444444444444444444  44444444444444444444444444444444444444444444'
+                            },
+                            {
+                                startTime: 55,
+                                endTime: 80,
+                                text: '수동 인덱스 5'
+                            },
+                            {
+                                startTime: 80,
+                                endTime: 100,
+                                text: '수동 인덱스 6'
+                            },
+                            {
+                                startTime: 100,
+                                endTime: 110,
+                                text: '수동 인덱스 7'
+                            },
+                            {
+                                startTime: 110,
+                                endTime: 150,
+                                text: '수동 인덱스 8'
+                            },
+                            {
+                                startTime: 150,
+                                endTime: 200,
+                                text: '수동 인덱스 9'
+                            },
+                            {
+                                startTime: 200,
+                                endTime: 250,
+                                text: '수동 인덱스 10'
+                            }
+                        ],
+                        kind: 'chapters',
+                        srclang: 'en',
+                        label: 'English',
+                        class: 'object' // 인덱스 유형 (vtt | object)
+                    } // 인덱스 정보 (자막유형 chapters를 대신한 object data)
+                ], // 언어별 자막(captions, subtitles) 및 인덱스(챕터) 정보
+                poster: 'http://farm.resources.ebs.co.kr/course/2017/2/23/10026573/22831674803476036_course.jpg', // 영상 재생전에 우선 노출되는 포스트 이미지)
+                topbar: {
+                    topbarText: {
+                        title: '강의명'
+                    } // 학습도구 영역의 타이틀 정보 (통상 강의명이 노출)
+                }, // 학습도구 영역 옵션
+                bookmarks: {
+                    items: [{
+                            startTime: 0, // 시작시간
+                            endTime: 120, // 종료시간
+                            text: '북마크 1' // 북마크명
+                        },
+                        {
+                            startTime: 110,
+                            endTime: 500,
+                            text: '북마크 2'
+                        },
+                        {
+                            startTime: 510,
+                            endTime: 1200,
+                            text: '북마크 33'
+                        },
+                        {
+                            startTime: 1200,
+                            endTime: 1210,
+                            text: '북마크명이 을 길게도 써보게 되지요'
+                        }
+                    ]
+                }, // 북마크 전달정보
+                // 추가적으로 전달할 정보
+                extraData: {
+                    courseId: 'CS001',
+                    lectId: 'LS002',
+                    etc: '..'
                 }
-            ]
-        }, // 북마크 전달정보
-        // 추가적으로 전달할 정보
-        extraData: {
-            courseId: 'CS001',
-            lectId: 'LS002',
-            etc: '..'
-        }
-    });
-});
+            });
+        });
 </script>
 ```
 
@@ -360,128 +390,130 @@ playerObj.on("ready", function() {
 ```javascript
 // Default options for the learnplayer.
 window.defaultOpts = {
-  controls: true, // 하단 컨트롤러 사용 여부
-  autoplay: true, // 자동 재생 사용 여부 [false | true | muted | play | any]
-  preload: "auto", // 비디오 데이터를 미리 다운로드할지 여부 [auto | true | metadata | none]
-  // width: '600px', // 플레이어의 고정 가로 길이
-  // height: '300px', // 플레이어의 고정 세로 길이
-  // aspectRatio: '16:2', // 플레이어 고정 비율
-  fluid: true, // 가로 새로 고정값이 아닌 부모 컨테이너에 맞게 유동 변경 여부
-  learnMode: true, // width, heigh, fluid등의 크기 옵션을 무시하고 학습형 스타일을 사용할지 여부
-  playsinline: true, // iOS대응 페이지내 재생 여부
-  html5: {
-    nativeTextTracks: false
-  }, // playinline와 함께 사용되며 remoteTextTracks을 사용하기 위함
-  language: "ko", // 언어코드 lang 폴더와 관련
-  textTrackSettings: false, // videojs의 기본옵션인 자막 스타일 변경 콤포넌트의 사용 여부
-  persistTextTrackSettings: false, // videojs의 기본옵션인 자막 스타일 변경 콤포넌트의 변경값 저장기능의 사용 여부
-  playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2], // 배속 목록
-  children: [
-    "topbarWrap",
-    "mediaLoader",
-    "posterImage",
-    "textTrackCustomDisplay",
-    "loadingSpinner",
-    "bigPlay1Button",
-    "resolutionOSDButton",
-    "controlBar",
-    "errorDisplay",
-    "messageLayer",
-    "resizeManager"
-  ], // 플레이어의 자녀 콤포넌트 목록 정의
-  controlBar: {
-    volumePanel: {
-      inline: false // 하단 컨트롤의 볼률 슬라이어 노출 방식 여부 (false: 새로노출)
-    },
+    controls: true, // 하단 컨트롤러 사용 여부
+    autoplay: true, // 자동 재생 사용 여부 [false | true | muted | play | any]
+    preload: 'auto', // 비디오 데이터를 미리 다운로드할지 여부 [auto | true | metadata | none]
+    // width: '600px', // 플레이어의 고정 가로 길이
+    // height: '300px', // 플레이어의 고정 세로 길이
+    // aspectRatio: '16:2', // 플레이어 고정 비율
+    fluid: true, // 가로 새로 고정값이 아닌 부모 컨테이너에 맞게 유동 변경 여부
+    learnMode: true, // width, heigh, fluid등의 크기 옵션을 무시하고 학습형 스타일을 사용할지 여부
+    playsinline: true, // iOS대응 페이지내 재생 여부
+    html5: {
+        nativeTextTracks: false
+    }, // playinline와 함께 사용되며 remoteTextTracks을 사용하기 위함
+    language: 'ko', // 언어코드 lang 폴더와 관련
+    textTrackSettings: false, // videojs의 기본옵션인 자막 스타일 변경 콤포넌트의 사용 여부
+    persistTextTrackSettings: false, // videojs의 기본옵션인 자막 스타일 변경 콤포넌트의 변경값 저장기능의 사용 여부
+    playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2], // 배속 목록
     children: [
-      "playToggle",
-      "volumePanel",
-      "currentTimeDisplay",
-      "timeDivider",
-      "durationDisplay",
-      "progressControl",
-      // 'liveDisplay',
-      // 'remainingTimeDisplay',
-      "customControlSpacer",
-      "playbackRateMenu1Button",
-      "captionsToggleButton",
-      // 'playbackRateMenuButton',
-      // 'chaptersButton',
-      // 'descriptionsButton',
-      // 'subsCapsButton',
-      // 'audioTrackButton',
-      "fullscreenToggle",
-      "SettingMenuButton"
-    ]
-    // 하단 컨트롤의 자녀 콤포넌트 목록 정의
-  },
-  contextmenu: {
-    cancel: true,
-    sensitivity: 10,
-    wait: 500,
-    disabled: false
-  },
-  // skin : ['learnplayer-blue.css'], //추가 스킨 목록 사용
-  hotkey: {
-    volumeStep: 0.1,
-    seekStep: 5,
-    enableMute: true, // 음소거 단축키 사용여부
-    enableVolumeScroll: true, // 볼륨 조절바 마우스휠 사용여부
-    enableFullscreen: true, // 전체화면 단축키 사용여부
-    enableNumbers: true // 단축키 0-9 사용여부 (총재생시간의 0% ~ 100% 위치로 이동)
-  },
-  touchoverlay: {
-    fullscreen: {
-      lockOnRotate: true,
-      iOS: true
+        'topbarWrap',
+        'mediaLoader',
+        'posterImage',
+        'textTrackCustomDisplay',
+        'loadingSpinner',
+        'bigPlay1Button',
+        'resolutionOSDButton',
+        'controlBar',
+        'errorDisplay',
+        'messageLayer',
+        'resizeManager'
+    ], // 플레이어의 자녀 콤포넌트 목록 정의
+    controlBar: {
+        volumePanel: {
+            inline: false // 하단 컨트롤의 볼률 슬라이어 노출 방식 여부 (false: 새로노출)
+        },
+        children: [
+            'playToggle',
+            'volumePanel',
+            'currentTimeDisplay',
+            'timeDivider',
+            'durationDisplay',
+            'progressControl',
+            // 'liveDisplay',
+            // 'remainingTimeDisplay',
+            'customControlSpacer',
+            'playbackRateMenu1Button',
+            'captionsToggleButton',
+            // 'playbackRateMenuButton',
+            // 'chaptersButton',
+            // 'descriptionsButton',
+            // 'subsCapsButton',
+            // 'audioTrackButton',
+            'fullscreenToggle',
+            'SettingMenuButton'
+        ]
+        // 하단 컨트롤의 자녀 콤포넌트 목록 정의
     },
-    touchControls: {
-      seekSeconds: 10,
-      tapTimeout: 300,
-      disableOnEnd: false
-    }
-  },
-  continue: {
-    time: 0, // 이어보기 위치
-    isShowMessage: true, // 이어보기시에 알림 레이어 노출여부
-    messageType: "confirm", // [alert | confirm]
-    message: "마지막 학습위치에서 재생하시겠습니까?<br/>&lt;br/&gt;태그로 여러줄을 입력하세요",
-    title: "" // default '알림'
-  }, // 이어보기 옵션
-  resolution: {
-    default: 'high', // 지정화질 선택 HD(1080) | SD(480) | LD(240) 등등, high : 해상도 높은순 선택, low: 해상도 낮은순 선택, 지정화질 선택상태에서 해당 화질이 없을시 low와 동일, 미지정시 low와 동일
-    ui: false,
-    dynamicLabel: false
-  }, // 품질변경 옵션
-  topbar: {
-    topbarText: {
-      isUse: false, // 노출여부
-      title: ""
+    contextmenu: {
+        cancel: true,
+        sensitivity: 10,
+        wait: 500,
+        disabled: false
     },
-    qnaButton: {
-      isUse: false, // 노출여부
-      extraFunction: "", // ex) goQNApopup
-      href: "manual.html?ddd=dd&dkdjf=22#first", // ex) manual.html?ddd=dd&dkdjf=22#first
-      target: "_blank",
-      isPlayStop: true, // 재생 정지 여부
-      messageType: "confirm", // [alert | confirm]
-      message: "QNA 페이지로 이동 하시겠습니까?",
-      title: "" // default '알림'
-    } // QNA 전달정보
-  }, // 학습도구 영역 옵션
-  bookmarks: {
-    isUse: false, // 노출여부
-    items: [],
-    extraFunctions: {
-      add: addBookmark,
-      modify: modifyBookmark,
-      remove: deleteBookmark
-    }
-  }, // 북마크 전달정보
-  playerInfo: {
-    innerHtml: "EBS sharePlayer" // text or tag Element
-  }, // 플레이어 버전 정보
-  debug: false // videojs의 로그 출력 여부
+    // skin : ['learnplayer-blue.css'], //추가 스킨 목록 사용
+    hotkey: {
+        volumeStep: 0.1,
+        seekStep: 5,
+        enableMute: true, // 음소거 단축키 사용여부
+        enableVolumeScroll: true, // 볼륨 조절바 마우스휠 사용여부
+        enableFullscreen: true, // 전체화면 단축키 사용여부
+        enableNumbers: true, // 단축키 0-9 사용여부 (총재생시간의 0% ~ 100% 위치로 이동)
+    },
+    touchoverlay: {
+        fullscreen: {
+            lockOnRotate: true,
+            iOS: true
+        },
+        touchControls: {
+            seekSeconds: 10,
+            tapTimeout: 300,
+            disableOnEnd: false
+        }
+    },
+    continue: {
+        time: 0, // 이어보기 위치
+        isShowMessage: true, // 이어보기시에 알림 레이어 노출여부
+        messageType: 'confirm', // [alert | confirm]
+        message: '마지막 학습위치에서 재생하시겠습니까?<br/>&lt;br/&gt;태그로 여러줄을 입력하세요',
+        title: '이어보기', // default '알림'
+        pauseOnOpen: true
+    }, // 이어보기 옵션
+    resolution: {
+        default: 'high', // 지정화질 선택 HD(1080) | SD(480) | LD(240) 등등, high : 해상도 높은순 선택, low: 해상도 낮은순 선택, 지정화질 선택상태에서 해당 화질이 없을시 low와 동일, 미지정시 low와 동일
+        ui: false,
+        dynamicLabel: false
+    }, // 품질변경 옵션
+    topbar: {
+        topbarText: {
+            isUse: false, // 노출여부
+            title: '',
+        },
+        qnaButton: {
+            isUse: false, // 노출여부
+            extraFunction: '', // ex) goQNApopup
+            href: 'manual.html?ddd=dd&dkdjf=22#first', // ex) manual.html?ddd=dd&dkdjf=22#first
+            target: '_blank',
+            isPlayStop: true, // 재생 정지 여부
+            messageType: 'confirm', // [alert | confirm]
+            message: 'QNA 페이지로 이동 하시겠습니까?',
+            title: '' // default '알림'
+        } // QNA 전달정보
+    }, // 학습도구 영역 옵션
+    bookmarks: {
+        isUse: true, // 노출여부
+        items: [],
+        extraFunctions: {
+            add: addBookmark,
+            modify: modifyBookmark,
+            remove: deleteBookmark
+        }
+    }, // 북마크 전달정보
+    playerInfo: {
+        innerHtml: 'EBS SharePlayer', // text or tag Element
+        isIncludeVersion: true
+    }, // 플레이어 버전 정보
+    debug: false // videojs의 로그 출력 여부
 };
 ```
 
