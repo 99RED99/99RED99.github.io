@@ -20,7 +20,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 
 ## 버전별 다운로드
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.10.zip" target="_blank">v1.0.10 (18.11.19)</a>
+- v1.0.10 (18.11.19) <a href="/assets/learnplayer/dest/learnplayer.v1.0.10.zip" target="_blank">link</a>
 
   - 설정 > 북마크 입력 양식 변경
     - "00시00분00초"로 표시하고 입력창 포커스시에 숫자값으로 입력
@@ -44,14 +44,23 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
     - 영상에 포스터 정보가 있을시 배경은 포스터 이미지 노출
     - 자동재생이 아닌경우에(크롬 자동재생정책등) 대응하여 이어보기 모달의 버튼 "확인","취소" 에 사용자 클릭 액션으로 판단하여 재생되도록 기능 수정
 
-  - 버그 수정 (v1.0.10)
+  - 버그 수정 (18.11.21)
     - 북마크 저장버튼이 모바일 장비에서 하단으로 밀리는 현상 수정
     - 재생 프로그래스에 호버 효과로 밝게shadow 영역 노출되는 효과 제거
     - IE에서 저장버튼이 크게 노출되는 현상 수정
     - 북마크 재생중 인덱스 선택시 북마크 해제 처리
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.9.zip" target="_blank">v1.0.9 (18.10.12)</a>
+  - 수정 사항 (18.11.22)
+    - 인덱스 목록의 닫기 버튼 옆에 강의명 삭제
+        - => 초기화 전달 옵션 topbar.topbarText.isUse(기본값은 false) 에 영향을 받도록 수정함
+    - 설정>북마크 영역의 안내 문구 글씨크기 사이즈 축소 요청
+        - => 폰트사이즈 0.8em (=11.53px) 에서  0.7em(=10px) 로 변경
+    - 설정>북마크 영역의 입력폼 포커스 유지시간 10초로 수정 요청
+    - 자막 노출 단축키 'C' 지정 및 설정>단축키 항목 추가
+    - 설정>단축키 IE 전체화면 안내 문구 글씨크기 사이즈 축소 요청
+        - => 폰트사이즈 0.8em (=11.53px) 에서 0.6em(8.66px) 로 축소하여 한줄에 표시함
 
+- v1.0.9 (18.10.12) <a href="/assets/learnplayer/dest/learnplayer.v1.0.9.zip" target="_blank">link</a>
   - 단축키 안내에 IE 에서 전체화면 단축키 불가한 내용 추가
   - 품질선정 로직 수정 (초기화 옵션 resolution.default 전달값)
     - 지정화질 선택 HD(1080) &#124; SD(480) &#124; LD(240) 등등 전달된 sources항목의 res 와 동일값 선택
@@ -60,7 +69,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
     - 지정화질 선택 상태에서 해당 화질이 없을시 low와 동일
     - 미지정시 low와 동일
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.8.zip" target="_blank">v1.0.8 (18.10.11)</a>
+- v1.0.8 (18.10.11) <a href="/assets/learnplayer/dest/learnplayer.v1.0.8.zip" target="_blank">link</a>
 
   - 학습도구영역>타이틀 초기화 옵션에 isUse 추가 (노출여부)
   - 학습도구영역>QNA 초기화 옵션에 isUse 추가 (노출여부)
@@ -68,7 +77,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
   - 인덱스 목록에 반응형 적용 (플레이어 가로기준 기본 : 30%, 499px 이하 : 70% )
   - 모바일에서 설정>단축키 메뉴 비노출 처리
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.7.zip" target="_blank">v1.0.7 (18.10.10)</a>
+- v1.0.7 (18.10.10) <a href="/assets/learnplayer/dest/learnplayer.v1.0.7.zip" target="_blank">link</a>
 
   - 북마크 항목 삭제후 기존 재생중인 북마크가 초기화 되지않는 오류 수정
   - 북마크 항목 삭제시 다음항목의 북마크가 재생되는 오류 수정
@@ -77,7 +86,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
   - 인덱스 목록에 반응형 적용 (플레이어 가로기준 기본 : 30%, 499px 이하 : 60% )
   - 단축키 동작을 위한 플레이어 포커스를 잃어버리는 몇몇 상황에 대응
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.6.zip" target="_blank">v1.0.6 (18.10.09)</a>
+- v1.0.6 (18.10.09) <a href="/assets/learnplayer/dest/learnplayer.v1.0.6.zip" target="_blank">link</a>
 
   - 초기화 옵션 'playsinline' 항목삭제 iOS 의 버전여부에 따라 자동 부여 처리
   - 모바일에서 장치회전시(새로에서 가로) 전체화면 으로 노출되도록 수정(재생 중일때만 기능 동작함, iOS 는 버전 10 부터 기능 동작함)
@@ -94,7 +103,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
   - 북마크 항목의 삭제버튼 모바일 터치 이벤트 미반응 오류 수정
   - 북마크 항목의 재생버튼의 모양을 재생(삼각형), 일반(불릿)으로 통일 (기존은 재생-원형삼각형 메인색, 정지-사각형, 일반-블릿, 호버-원형삼각형 흰색)
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.5.zip" target="_blank">v1.0.5 (18.10.07)</a>
+- v1.0.5 (18.10.07) <a href="/assets/learnplayer/dest/learnplayer.v1.0.5.zip" target="_blank">link</a>
 
   - 공통 : 영상 재생 중 영역상영내 일시정지(정지중에는 재생)버튼이 없어지지 않고 계속 노출됨
     - 컨트롤러 및 학습도구 영역과 함께 사라지도록 적용
@@ -116,7 +125,7 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
   - 현재 재생 중인 시간만 메인색 적용
   - 화면에 오버되는 메뉴인 '배속','설정','인덱스'은 선택된 메뉴만 노출되도록 선택이외 메뉴는 비노출 처리
 
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.4.zip" target="_blank">v1.0.4 (18.10.05)</a>
+- v1.0.4 (18.10.05) <a href="/assets/learnplayer/dest/learnplayer.v1.0.4.zip" target="_blank">link</a>
   - 재생화질 초기화 전달 옵션값 변경 (1080,480 -> HD, SD, LD)
   - 재생화질 기본값 '일반화질'인 default: 'SD' 로 지정 처리
   - 자막파일별 유형변경 처리 기능 추가 (smi &#124; srt to vtt)
@@ -124,7 +133,8 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
   - 인덱스 오브젝트 배열을 vtt chapter 유형으로 변경 기능 수정 ('Text Track parsing errors' 대응)
   - 인덱스 오브젝트 배열을 vtt chapter 유형으로 변경 처리를 위해 초기화 전달 옵션값 class 추가 (vtt &#124; object)
   - 초기화 전달 옵션값에 커스텀 데이터 'extraData' 추가
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.3.zip" target="_blank">v1.0.3 (18.10.03)</a>
+
+- v1.0.3 (18.10.03)<a  href="/assets/learnplayer/dest/learnplayer.v1.0.3.zip" target="_blank">link</a>
   - 인덱스 목록 항목에 위치값 노출 처리
   - 인덱스 목록 항목의 길이값 노출방법을 말줄임에서 줄바꿈으로 변경 처리
   - 초기화 옵션에 북마크 전달정보 추가 (서버 데이터 처리용 예시 함수 포함)
@@ -133,9 +143,12 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
   - 단축키 추가 (B: 설정메뉴의 북마크 메뉴 노출)
   - 설정메뉴의 단축키 안내 내용 추가 (북마크, 배속)
   - 소소한 UI style 수정
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.2.zip" target="_blank">v1.0.2 (18.09.20)</a>
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.1.zip" target="_blank">v1.0.1 (18.09.17)</a>
-- <a  href="/assets/learnplayer/dest/learnplayer.v1.0.0.zip" target="_blank">v1.0.0 (18.09.11)</a>
+
+- v1.0.2 (18.09.20) <a href="/assets/learnplayer/dest/learnplayer.v1.0.2.zip" target="_blank">link</a>
+
+- v1.0.1 (18.09.17) <a href="/assets/learnplayer/dest/learnplayer.v1.0.1.zip" target="_blank">link</a>
+
+- v1.0.0 (18.09.11) <a href="/assets/learnplayer/dest/learnplayer.v1.0.0.zip" target="_blank">link</a>
 
 <hr  />
 
