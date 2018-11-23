@@ -165,12 +165,14 @@ window.defaultOpts = {
  * 옵션 bookmarks.extraFunctions.add
  * 플레이어에 추가된 북마크 아이템의 정보를 전달합니다.
  * @param {Object} [item]
+ * @param {Object} [player]
  * @param {Component~ReadyCallback} callbackFunction
  *  서버로 raw 데이터 전송후 가공된 데이터를 플레이어에 전달할 목적으로 사용됩니다.
  */
 function addBookmark() {
     var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var callbackFunction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+    var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var callbackFunction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
     item.dbSeq = parseInt(Math.random() * 10000);
     callbackFunction(item);
 }
@@ -179,21 +181,25 @@ function addBookmark() {
  * 옵션 bookmarks.extraFunctions.modify
  * 플레이어에 수정된 북마크 아이템의 정보를 전달합니다.
  * @param {Object} [item]
+ * @param {Object} [player]
  * @param {Component~ReadyCallback} callbackFunction
  *  서버로 raw 데이터 전송후 가공된 데이터를 플레이어에 전달할 목적으로 사용됩니다.
  */
 function modifyBookmark() {
     var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var callbackFunction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+    var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var callbackFunction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
 }
 
 /**
  * 옵션 bookmarks.extraFunctions.modify
  * 플레이어에 삭제된 북마크 아이템의 정보를 전달합니다.
  * @param {Object} [item]
+ * @param {Object} [player]
  */
 function deleteBookmark() {
     var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 }
 
 /**

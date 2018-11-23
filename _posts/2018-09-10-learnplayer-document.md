@@ -692,6 +692,122 @@ that were far away smaller.
 
 <hr  />
 
+## 북마크
+
+- 학습플레이어 내에 기존에 생성된 북마크 정보를 전달하여 북마크 목록을 노출하고 플레이어내의 입력폼을 통한 북마크 항목을 추가, 수정 및 기존 항목을 삭제할 수 있습니다.
+- 북마크 관련 액션인 추가, 수정, 삭제시 서버사이드와의 연동를 위해 플레이어 초기화 전달정보에서 확장함수를 제공합니다.
+
+
+- 북마크 목록 노출을 위한 정보 전달
+    - 학습플레이어를 초기화 할때에 해당 강좌의 북마크 정보를 하위의 '관련 초기화 전달정보 및 함수 예시' 와 같이 전달합니다.
+    - 학습플레이어에서 필수 항목은 시작시간, 종료시간, 북마크명이며 서버사이드에서 필요한 일련의 작업(DB DATA insert, update등등)를 위한 키값들(강의아이디, 북마크아이디 등등)을 북마크 정보와 함께 전달할 수 있습니다.
+
+
+- 북마크 항목 추가
+    - 학습플레이어에서 새로운 북마크가 추가될 경우 초기화 전달정보 bookmarks.extraFunctions.add에 지정한 확장함수를 학습플레이어에서 호출합니다.
+    - 학습플레이어가 확장함수 호출시 사용자가 추가한 항목의 정보(시작시간, 종료시간, 북마크명)를 첫번째 파라미터로 전달합니다.
+    - 학습플레이어가 확장함수 호출시 재생중인 플레이어의 오브젝트정보를 두번째 파라미터로 전달합니다.<br/>
+        - 전달된 오브젝트로 최초 전달된 초기화 정보나 현재 상태를 확인할 수 있습니다.<br/>
+        - 예1 : player.options_.bookmarks.items 으로 플레이어의 북마크 목록 전체 정보를 가져올 수 있습니다.
+        - 예2 : player.options_.extraData.lectId 으로 플레이어로 전달한 확장데이터를 가져올 수 있습니다.
+    - 학습플레이어가 확장함수 호출시 서버사이드에서의 일련의 작업(DB DATA insert등등) 후 가공된 data를 학습플레이어로 전달하기 위한 콜백함수를 세번째 파라미터로 전달합니다.<br/>
+        학습플레이어의 콜백함수를 호출하여 가공된 data로 변경하여야 이후 추가된 해당 항목의 수정 및 삭제시 서버사이드에서 필요한 키값을 전달받을 수 있습니다.
+
+
+- 북마크 항목 수정
+    - 학습플레이어에서 북마크를 수정할 경우 초기화 전달정보 bookmarks.extraFunctions.modify에 지정한 확장함수를 학습플레이어에서 호출합니다.
+    - 학습플레이어가 확장함수 호출시 사용자가 수정한 항목의 수정정보(시작시간, 종료시간, 북마크명) 및 서버사이드용 키값 정보를 첫번째 파라미터로 전달합니다.
+    - 학습플레이어가 확장함수 호출시 재생중인 플레이어의 오브젝트정보를 두번째 파라미터로 전달합니다.
+    - 학습플레이어가 확장함수 호출시 서버사이드에서의 일련의 작업(DB DATA update등등) 후 가공된 data를 학습플레이어로 전달하기 위한 콜백함수를 세번째 파라미터로 전달합니다.<br/>
+        항목 수정시에는 이미 서버사이드에서 가공된 data를 보유중이므로 콜백함수의 호출은 필수는 아닙니다.
+    
+
+- 북마크 항목 삭제
+    - 학습플레이어에서 북마크를 수정할 경우 초기화 전달정보 bookmarks.extraFunctions.remove에 지정한 확장함수를 학습플레이어에서 호출합니다.
+    - 학습플레이어가 확장함수 호출시 사용자가 수정한 항목의 정보(시작시간, 종료시간, 북마크명)를 첫번째 파라미터로 전달합니다.
+    - 학습플레이어가 확장함수 호출시 재생중인 플레이어의 오브젝트정보를 두번째 파라미터로 전달합니다.
+
+ 
+■ 관련 초기화 전달정보 및 함수 예시
+```javascript
+    bookmarks: {
+        isUse: true, // 노출여부
+        items: [{
+                    startTime: 0, // 시작시간
+                    endTime: 120, // 종료시간
+                    text: '북마크 1', // 북마크명
+                    dbSeq: 10000001 // DB unique key
+                },
+                {
+                    startTime: 110,
+                    endTime: 500,
+                    text: '북마크 2',
+                    dbSeq: 10000002
+                },
+                {
+                    startTime: 510,
+                    endTime: 1200,
+                    text: '북마크 33',
+                    dbSeq: 10000003
+                },
+                {
+                    startTime: 1200,
+                    endTime: 1210,
+                    text: '북마크명이 을 길게도 써보게 되지요',
+                    dbSeq: 10000003
+                }
+        ], // 기존에 생성된 북마크 정보
+        extraFunctions: {
+            add: addBookmark,
+            modify: modifyBookmark,
+            remove: deleteBookmark
+        }
+    },
+
+    /**
+    * 옵션 bookmarks.extraFunctions.add
+    * 플레이어에 추가된 북마크 아이템의 정보를 전달합니다.
+    * @param {Object} [item]
+    * @param {Object} [player]
+    * @param {Component~ReadyCallback} callbackFunction
+    *  서버로 raw 데이터 전송후 가공된 데이터를 플레이어에 전달할 목적으로 사용됩니다.
+    */
+    function addBookmark() {
+        var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var callbackFunction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
+        item.dbSeq = parseInt(Math.random() * 10000);
+        callbackFunction(item);
+    }
+
+    /**
+    * 옵션 bookmarks.extraFunctions.modify
+    * 플레이어에 수정된 북마크 아이템의 정보를 전달합니다.
+    * @param {Object} [item]
+    * @param {Object} [player]
+    * @param {Component~ReadyCallback} callbackFunction
+    *  서버로 raw 데이터 전송후 가공된 데이터를 플레이어에 전달할 목적으로 사용됩니다.
+    */
+    function modifyBookmark() {
+        var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var callbackFunction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
+    }
+
+    /**
+    * 옵션 bookmarks.extraFunctions.modify
+    * 플레이어에 삭제된 북마크 아이템의 정보를 전달합니다.
+    * @param {Object} [item]
+    * @param {Object} [player]
+    */
+    function deleteBookmark() {
+        var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    }
+```
+
+<hr  />
+
 ## 데모
 
 - 단일 프로그래밍 타입 재생 <a href="https://99red99.github.io./assets/learnplayer/manual.html" target="_blank">link</a>
