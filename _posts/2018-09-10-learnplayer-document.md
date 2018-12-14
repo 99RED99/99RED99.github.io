@@ -20,6 +20,13 @@ learnplayer 는 오픈소스인 videojs 를 기반으로 하는 학습형 확장
 
 ## 버전별 다운로드
 
+- v1.0.11 (18.12.14) <a href="/assets/learnplayer/dest/learnplayer.v1.0.11.zip" target="_blank">link</a>
+
+  - 설정 > 북마크 항목 수정시에 전달되는 bookmarks.extraFunctions.modify 로 전달되는 수정정보에 키값 누락되는 오류 수정
+  - 설정 > 플레이어 정보 노출되는 텍스트 수정
+  - 설정 > 북마크 항목 추가시 지정한 북마크 영역 재생하는 기능 취소 처리
+
+
 - v1.0.10 (18.11.19) <a href="/assets/learnplayer/dest/learnplayer.v1.0.10.zip" target="_blank">link</a>
 
   - 설정 > 북마크 입력 양식 변경

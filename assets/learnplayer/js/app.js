@@ -148,7 +148,7 @@ window.defaultOpts = {
         }
     }, // 북마크 전달정보
     playerInfo: {
-        innerHtml: 'EBS SharePlayer', // text or tag Element
+        innerHtml: 'EBS HTML5Player by Sharemind', // text or tag Element
         isIncludeVersion: true
     }, // 플레이어 버전 정보
     debug: false // videojs의 로그 출력 여부
@@ -173,6 +173,7 @@ function addBookmark() {
     var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var callbackFunction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
+    // console.log(item);
     item.dbSeq = parseInt(Math.random() * 10000);
     callbackFunction(item);
 }
@@ -189,6 +190,7 @@ function modifyBookmark() {
     var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var callbackFunction = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
+    // console.log(item);
 }
 
 /**
@@ -200,6 +202,7 @@ function modifyBookmark() {
 function deleteBookmark() {
     var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var player = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    // console.log(item);
 }
 
 /**
